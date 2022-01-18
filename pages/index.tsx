@@ -1,78 +1,55 @@
+import Image from 'next/image'
 import Header from '../components/layout/Header'
+import ListSurah from '../components/ListSurah'
 
-export default function Home() {
+export default function Home({listFullSurah}: any) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col items-center justify-center">
       <Header />
 
-      <main className="flex flex-col items-center justify-center w-full flex-1">
-        <h1 className="text-6xl font-bold mb-4">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <main className="px-[20px] w-full">
+        <div className='relative'>
+          <div className='absolute z-10 left-5 top-5'>
+            <div className='flex mb-6'>
+              <Image 
+                className='rounded-lg w-full'
+                src='/images/icon/lastread.svg'
+                width={20}
+                height={20}
+                alt=''
+              />
+              <div className='text-sm ml-2 text-white'>Terakhir Dibaca</div>
+            </div>
+            <div className='font-bold text-base mb-[3px] text-white'>
+              Al-Fatihah
+            </div>
+            <div className='text-xs text-white'>Ayat 1</div>
+          </div>
+          <Image 
+            className='rounded-lg w-full'
+            src='/images/bg-lastread.svg'
+            width={320}
+            height={130}
+            layout='responsive'
+            objectFit='cover'
+            alt=''
+          />
         </div>
+        <ListSurah listFullSurah={listFullSurah} />
       </main>
-
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-        </a>
-      </footer>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const res = await import('../api/surah-info.json')
+  const listFullSurah = res.surah_info.map((item: any) => {
+    return Object.assign({}, item, { index: item.index })
+  })
+
+  return {
+    props: {
+      listFullSurah,
+    },
+  }
 }
