@@ -1,11 +1,11 @@
 import Image from 'next/image'
-import Header from '../components/layout/Header'
-import ListSurah from '../components/ListSurah'
+import Header from '@/components/layout/Header'
+import ListSurah from '@/components/ListSurah'
 
 export default function Home({listFullSurah}: any) {
   return (
     <div className="flex flex-col items-center justify-center">
-      <Header />
+      <Header title='Quranku'/>
 
       <main className="px-[20px] w-full">
         <div className='relative'>

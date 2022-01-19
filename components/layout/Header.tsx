@@ -2,21 +2,29 @@ import { useRouter } from 'next/router';
 import Image from 'next/image'
 
 type HeaderProps = {
-  isBack?: boolean;
+  isFixed?: boolean
+  isBack?: boolean
+  title: string
 };
 
-export default function Header({ isBack = false }: HeaderProps) {
+export default function Header({ isFixed, isBack = false, title }: HeaderProps) {
   const router = useRouter();
 
+  const handleClick = () => {
+    router.push('/')
+  }
+
   return (
-    <header className='w-full flex bg-white px-5 py-[14px] relative mb-[2px]'>
+    <header className={`w-full flex bg-white px-5 py-[14px] mb-[2px] z-10
+      ${isFixed ? 'fixed shadow-md' : ''}
+    `}>
       {isBack &&
-        <button className='absolute'>
+        <button className='absolute' onClick={handleClick}>
           <Image src='/images/icon/back.svg' width={24} height={24} alt='' />
         </button>
       }
       <div className='mx-auto'>
-        <div className='text-base font-bold'>Quranku</div>
+        <div className='text-base font-bold'>{title}</div>
       </div>
     </header>
   );

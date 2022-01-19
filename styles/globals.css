@@ -9,6 +9,21 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+@font-face {
+  font-family: 'LPMQ';
+  src: url('/fonts/IsepMisbah.ttf') format('truetype');
+  font-weight: 400;
+  font-weight: normal;
+  font-display: swap;
+}
+
+.arab {
+  font-family: LPMQ, 'Traditional Arabic', Tahoma, sans-serif;
+  font-weight: normal;
+  text-align: right;
+  direction: rtl;
+}
+
 a {
   color: inherit;
   text-decoration: none;
