@@ -5,8 +5,10 @@ import { getItem } from '@/utils/storage'
 import storageKey from '@/constant/storage-key'
 import Head from 'next/head'
 import Router from 'next/router'
+import { useEffect, useState } from 'react'
 
 export default function Home({listFullSurah}: any) {
+  const [showButton, setShowButton] = useState(false)
   const cacheLastRead = getItem(storageKey.LAST_READ, storageKey.VERSION) || {}
   const hasCache = Object.keys(cacheLastRead).length > 0
 
@@ -16,6 +18,23 @@ export default function Home({listFullSurah}: any) {
     } else {
       return
     }
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    });
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
   }
 
   return (
@@ -73,6 +92,13 @@ export default function Home({listFullSurah}: any) {
         </div>
         <ListSurah listFullSurah={listFullSurah} />
       </main>
+      {showButton && (
+        <button onClick={scrollToTop} className="fixed p-3 rounded-full bottom-5 right-5 text-lg bg-[#29A19C] drop-shadow-custom">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 11H11V21H13V11H16L12 7L8 11ZM4 3V5H20V3H4Z" fill="white"/>
+          </svg>
+        </button>
+      )}
     </div>
   )
 }

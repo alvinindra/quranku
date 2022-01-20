@@ -35,7 +35,11 @@ export default function Verse({numberSurah, surah, verse, translations}: any) {
                 d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
             </path>
         </svg>
-        <input type="text" onChange={event => setQuery(event.target.value)} className="text-sm text-black rounded-lg appearance-none focus:outline-none focus:shadow-outline pl-8 px-4 py-2 w-full" placeholder="Cari ayat (Contoh : 2)" />
+        <input type="text" 
+          onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
+          onChange={event => setQuery(event.target.value)} 
+          className="text-sm text-black rounded-lg appearance-none focus:outline-none focus:shadow-outline 
+          pl-8 px-4 py-2 w-full" placeholder="Cari ayat (Contoh : 2)" />
       </div>
       {
         Object.keys(verse).filter((text: any) => {
