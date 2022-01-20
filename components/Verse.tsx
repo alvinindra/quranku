@@ -1,6 +1,13 @@
 import Image from 'next/image'
+import storageKey from '@/constant/storage-key'
+import { setItem } from '@/utils/storage'
 
-export default function Verse({verse, translations}: any) {
+const setLastReadVerse = (surah: any, verse: any) => {
+  const data: any = { surah, verse }
+  setItem(storageKey.LAST_READ, data, storageKey.VERSION)
+}
+
+export default function Verse({surah, verse, translations}: any) {
   return (
     <>
       {
@@ -11,7 +18,7 @@ export default function Verse({verse, translations}: any) {
               text-xs text-[#29A19C] flex justify-center'>
                 <span className='my-auto'>{index+1}</span>
               </div>
-              <button className='ml-auto'>
+              <button className='ml-auto' onClick={() => setLastReadVerse(surah, index+1)}>
                 <Image 
                   src='/images/icon/bookmark.svg'
                   width={24}

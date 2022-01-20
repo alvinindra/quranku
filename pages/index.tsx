@@ -1,8 +1,11 @@
 import Image from 'next/image'
 import Header from '@/components/layout/Header'
 import ListSurah from '@/components/ListSurah'
+import { getItem } from '@/utils/storage'
+import storageKey from '@/constant/storage-key'
 
 export default function Home({listFullSurah}: any) {
+  const cacheLastRead = getItem(storageKey.LAST_READ, storageKey.VERSION) || {}
   return (
     <div className="flex flex-col items-center justify-center">
       <Header title='Quranku'/>
@@ -20,10 +23,17 @@ export default function Home({listFullSurah}: any) {
               />
               <div className='text-sm ml-2 text-white'>Terakhir Dibaca</div>
             </div>
-            <div className='font-bold text-base mb-[3px] text-white'>
-              Al-Fatihah
-            </div>
-            <div className='text-xs text-white'>Ayat 1</div>
+            { Object.keys(cacheLastRead).length > 0 ?
+              <>
+                <div className='font-bold text-base mb-[3px] text-white'>
+                  {cacheLastRead.surah}
+                </div>
+                <div className='text-xs text-white'>Ayat {cacheLastRead.verse}</div>
+              </>
+              : <div className='font-bold text-base mb-[3px] text-white w-[100px]'>
+                Ayo baca Al-Quran
+              </div>
+            }
           </div>
           <Image 
             className='rounded-lg w-full'
@@ -42,7 +52,7 @@ export default function Home({listFullSurah}: any) {
 }
 
 export async function getStaticProps() {
-  const res = await import('../api/surah-info.json')
+  const res = await import('@/data/surah-info.json')
   const listFullSurah = res.surah_info.map((item: any) => {
     return Object.assign({}, item, { index: item.index })
   })

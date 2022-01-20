@@ -40,6 +40,7 @@ export default function SurahPage({surah}: any) {
         </div>
         <div className='flex flex-col relative'>
           <Verse
+            surah={surah.name_latin}
             verse={surah.text}
             translations={surah.translations}
           />
@@ -50,7 +51,7 @@ export default function SurahPage({surah}: any) {
 }
 
 export async function getStaticPaths() {
-  const res = await import('@/api/surah-info.json')
+  const res = await import('@/data/surah-info.json')
 
   return { 
     paths: res.surah_info.map((item: any) => ({
@@ -64,7 +65,7 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps({ params }: any) {
-  const res = await import(`@/api/surah/${params.id}.json`)
+  const res = await import(`@/data/surah/${params.id}.json`)
   const surah = res[params.id]
   const countAyah = parseInt(surah.number_of_ayah)
   return {
