@@ -45,7 +45,7 @@ export default function Verse({numberSurah, surah, verse, translations}: any) {
             <div className='flex mb-2'>
               <div className='flex-shrink-0 mr-5 my-auto rounded-full w-7 h-7 text-center border border-[#29A19C] 
               text-xs text-[#29A19C] flex justify-center'>
-                <span className='my-auto'>{query ? query : index+1}</span>
+                <span className='my-auto'>{text}</span>
               </div>
               <button className='ml-auto' onClick={() => setLastReadVerse(numberSurah, surah, query ? query : index+1)}>
                 <Image 

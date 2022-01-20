@@ -21,6 +21,9 @@ export default function Home({listFullSurah}: any) {
   return (
     <div className="flex flex-col items-center justify-center">
       <Head>
+        <meta name="description" content="Baca Al-Quran dengan ayat terjemahan Bahasa Indonesia" />
+        <meta name="keywords" content="Al-Quran, Quran, Quran Indonesia, Quranku" />
+        <meta name="og:title" content="Quranku" />
         <title>Quranku</title>
       </Head>
       <Header title='Quranku'/>
