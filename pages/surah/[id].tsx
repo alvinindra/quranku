@@ -44,6 +44,7 @@ export default function SurahPage({surah}: any) {
         </div>
         <div className='flex flex-col relative w-full'>
           <Verse
+            numberSurah={surah.number}
             surah={surah.name_latin}
             verse={surah.text}
             translations={surah.translations}

@@ -1,21 +1,26 @@
 import Image from 'next/image'
 import storageKey from '@/constant/storage-key'
 import { setItem } from '@/utils/storage'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-export default function Verse({surah, verse, translations}: any) {
+export default function Verse({numberSurah, surah, verse, translations}: any) {
   const [query, setQuery] = useState("")
   const [isOpen, setIsOpen] = useState(false)
-  const setLastReadVerse = (surah: any, verse: any) => {
-    const data: any = { surah, verse }
+  const setLastReadVerse = (numberSurah: any, surah: any, verse: any) => {
+    const data: any = { numberSurah, surah, verse }
     setItem(storageKey.LAST_READ, data, storageKey.VERSION)
     if (isOpen) { return setIsOpen(true) }
     setIsOpen(true)
-    setTimeout(
-      () => setIsOpen(false), 
-      3000
-    )
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(
+        () => setIsOpen(false), 
+        3000
+      )
+    }
+  })
 
   return (
     <>
@@ -36,13 +41,13 @@ export default function Verse({surah, verse, translations}: any) {
             return text
           }
         }).map((text: any, index: any) => (
-          <div key={index} className='relative flex flex-col mb-5 px-3 py-4 bg-white rounded-lg drop-shadow-custom'>
+          <div key={index} id={index+1} className='relative flex flex-col mb-5 px-3 py-4 bg-white rounded-lg drop-shadow-custom'>
             <div className='flex mb-2'>
-              <div className='flex-shrink-0 mr-5 my-auto rounded-full w-6 h-6 text-center border border-[#29A19C] 
+              <div className='flex-shrink-0 mr-5 my-auto rounded-full w-7 h-7 text-center border border-[#29A19C] 
               text-xs text-[#29A19C] flex justify-center'>
                 <span className='my-auto'>{query ? query : index+1}</span>
               </div>
-              <button className='ml-auto' onClick={() => setLastReadVerse(surah, index+1)}>
+              <button className='ml-auto' onClick={() => setLastReadVerse(numberSurah, surah, query ? query : index+1)}>
                 <Image 
                   src='/images/icon/bookmark.svg'
                   width={24}
@@ -57,28 +62,6 @@ export default function Verse({surah, verse, translations}: any) {
             </div>
           </div>
         ))
-        // Object.keys(verse).map((text: any, index: number) => {
-        //   return <div key={index} className='relative flex flex-col mb-5 px-3 py-4 bg-white rounded-lg drop-shadow-custom'>
-        //     <div className='flex mb-2'>
-        //       <div className='flex-shrink-0 mr-5 my-auto rounded-full w-6 h-6 text-center border border-[#29A19C] 
-        //       text-xs text-[#29A19C] flex justify-center'>
-        //         <span className='my-auto'>{index+1}</span>
-        //       </div>
-        //       <button className='ml-auto' onClick={() => setLastReadVerse(surah, index+1)}>
-        //         <Image 
-        //           src='/images/icon/bookmark.svg'
-        //           width={24}
-        //           height={24}
-        //           alt=''
-        //         />
-        //       </button>
-        //     </div>
-        //     <div className='my-auto'>
-        //       <div className='text-[#0C1517] text-lg font-bold arab mb-[6px] leading-[31.64px]'>{verse[text]}</div>
-        //       <div className='text-[#8A8A8E] text-xs leading-[18px]'>{translations.id.text[text]}</div>
-        //     </div>
-        //   </div>
-        // })
       }
       {
         isOpen && <div className='fixed w-fit left-1/2 -translate-x-1/2 translate-y-1/2 
