@@ -13,13 +13,17 @@ export default function Verse({numberSurah, surah, verse, translations}: any) {
     setIsOpen(true)
   }
 
-  useEffect(() => {
+  const isOpenFunction = () => {
     if (isOpen) {
       setTimeout(
         () => setIsOpen(false), 
-        3000
+        2000
       )
     }
+  }
+
+  useEffect(() => {
+    isOpenFunction()
   })
 
   return (
@@ -47,7 +51,7 @@ export default function Verse({numberSurah, surah, verse, translations}: any) {
               text-xs text-[#29A19C] flex justify-center'>
                 <span className='my-auto'>{text}</span>
               </div>
-              <button className='ml-auto' onClick={() => setLastReadVerse(numberSurah, surah, query ? query : index+1)}>
+              <button className='ml-auto' onClick={() => setLastReadVerse(numberSurah, surah, text)}>
                 <Image 
                   src='/images/icon/bookmark.svg'
                   width={24}

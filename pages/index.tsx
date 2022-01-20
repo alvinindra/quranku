@@ -21,6 +21,10 @@ export default function Home({listFullSurah}: any) {
   return (
     <div className="flex flex-col items-center justify-center">
       <Head>
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+        />
         <meta name="description" content="Baca Al-Quran dengan ayat terjemahan Bahasa Indonesia" />
         <meta name="keywords" content="Al-Quran, Quran, Quran Indonesia, Quranku" />
         <meta name="og:title" content="Quranku" />
