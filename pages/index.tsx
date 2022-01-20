@@ -3,11 +3,15 @@ import Header from '@/components/layout/Header'
 import ListSurah from '@/components/ListSurah'
 import { getItem } from '@/utils/storage'
 import storageKey from '@/constant/storage-key'
+import Head from 'next/head'
 
 export default function Home({listFullSurah}: any) {
   const cacheLastRead = getItem(storageKey.LAST_READ, storageKey.VERSION) || {}
   return (
     <div className="flex flex-col items-center justify-center">
+      <Head>
+        <title>Quranku</title>
+      </Head>
       <Header title='Quranku'/>
 
       <main className="px-[20px] w-full">

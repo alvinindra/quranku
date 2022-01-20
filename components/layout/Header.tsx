@@ -16,7 +16,7 @@ export default function Header({ isFixed, isBack = false, title }: HeaderProps) 
 
   return (
     <header className={`w-full flex bg-white px-5 py-[14px] mb-[2px] z-10
-      ${isFixed ? 'fixed shadow-md' : ''}
+      ${isFixed ? 'fixed shadow-md left-0' : ''}
     `}>
       {isBack &&
         <button className='absolute' onClick={handleClick}>

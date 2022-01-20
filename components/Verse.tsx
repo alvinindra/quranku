@@ -1,13 +1,21 @@
 import Image from 'next/image'
 import storageKey from '@/constant/storage-key'
 import { setItem } from '@/utils/storage'
-
-const setLastReadVerse = (surah: any, verse: any) => {
-  const data: any = { surah, verse }
-  setItem(storageKey.LAST_READ, data, storageKey.VERSION)
-}
+import { useState } from 'react'
 
 export default function Verse({surah, verse, translations}: any) {
+  const [isOpen, setIsOpen] = useState(false)
+  const setLastReadVerse = (surah: any, verse: any) => {
+    const data: any = { surah, verse }
+    setItem(storageKey.LAST_READ, data, storageKey.VERSION)
+    if (isOpen) { return setIsOpen(true) }
+    setIsOpen(true)
+    setTimeout(
+      () => setIsOpen(false), 
+      3000
+    )
+  }
+
   return (
     <>
       {
@@ -33,6 +41,19 @@ export default function Verse({surah, verse, translations}: any) {
             </div>
           </div>
         })
+      }
+      {
+        isOpen && <div className='fixed w-fit left-1/2 -translate-x-1/2 translate-y-1/2 
+        bottom-[50px] transition duration-300 text-white bg-[#29A19C] 
+        rounded-md px-5 py-4 z-50'>
+          <div className="flex items-center space-x-2">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <p className="font-semibold text-sm">Berhasil menyimpan bacaan</p>
+          </div>
+        </div>
       }
     </>
   );

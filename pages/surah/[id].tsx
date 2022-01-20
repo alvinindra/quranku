@@ -1,12 +1,16 @@
 import Image from 'next/image'
 import Header from '@/components/layout/Header'
 import Verse from '@/components/Verse'
+import Head from 'next/head'
 
 export default function SurahPage({surah}: any) {
   const isSpecial = (parseInt(surah.number) !== 1 && parseInt(surah.number) !== 9)
   
   return (
     <>
+      <Head>
+        <title>{surah.name_latin} - Quranku</title>
+      </Head>
       <Header isFixed={true} isBack={true} title={surah.name_latin} />
       <div className="flex flex-col items-center justify-center px-[20px]">
         
