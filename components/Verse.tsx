@@ -61,7 +61,7 @@ export default function Verse({numberSurah, surah, verse, translations}: any) {
               </button>
             </div>
             <div className='my-auto'>
-              <div className='text-[#0C1517] text-lg font-bold arab mb-[6px] leading-[31.64px]'>{verse[text]}</div>
+              <div className='text-[#0C1517] text-2xl font-bold arab mb-3 leading-[48px]'>{verse[text]}</div>
               <div className='text-[#8A8A8E] text-xs leading-[18px]'>{translations.id.text[text]}</div>
             </div>
           </div>
