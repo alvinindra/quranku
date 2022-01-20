@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="keywords" content="Al-Quran, Quran, Quran Indonesia, Quranku" />
         <meta name="og:title" content="Quranku" />
         <title>Quranku</title>
-        <meta name="og:image" content="/images/cover-quranku.jpg" />
+        <meta name="og:image" content="https://alquran-ku.netlify.app/images/cover-quranku.jpg" />
         <meta name="twitter:title" content="Quranku"/>
         <meta name="twitter:description" content="Aplikasi baca Al-Quran dengan ayat terjemahan Bahasa Indonesia" />
         <meta name="twitter:card" content="summary_large_image" />
