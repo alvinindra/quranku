@@ -26,7 +26,7 @@ export default function SurahPage({surah}: any) {
               <div className='font-bold text-xl mb-[3px] text-white'>
                 {surah.name_latin}
               </div>
-              <div className='text-xs text-white mb-[10px]'>{surah.translations.id.name}, {surah.number_of_ayah}</div>
+              <div className='text-xs text-white mb-[10px]'>{surah.translations.id.name}, {surah.number_of_ayah} ayat</div>
               {isSpecial &&
                 <>
                   <hr className='w-[220px] mx-auto mb-3' />
