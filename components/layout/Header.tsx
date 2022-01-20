@@ -24,7 +24,7 @@ export default function Header({ isFixed, isBack = false, title }: HeaderProps) 
         </button>
       }
       <div className='mx-auto'>
-        <div className='text-base font-bold'>{title}</div>
+        <div className='text-base font-bold text-black'>{title}</div>
       </div>
     </header>
   );
