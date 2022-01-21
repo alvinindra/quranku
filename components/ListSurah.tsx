@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import Surah from './Surah'
 
-export default function ListSurah({ listFullSurah }: any) {
+import type { SurahInfo, SurahInfoJson } from '@/types/SurahInfo'
+
+export default function ListSurah({ surah_info }: SurahInfoJson) {
   const [query, setQuery] = useState("")
   
   return (
@@ -17,13 +19,13 @@ export default function ListSurah({ listFullSurah }: any) {
       </div>
       <div className='flex flex-col relative'>
       {
-        listFullSurah.filter((item: any) => {
+        surah_info.filter((item: SurahInfo) => {
           if (query === '') {
             return item
           } else if (item.latin.toLowerCase().includes(query.toLowerCase())) {
             return item
           }
-        }).map((item: any, index: any) => (
+        }).map((item: SurahInfo, index: number) => (
           <Surah 
               key={index}
               item={item}

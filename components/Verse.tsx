@@ -1,12 +1,25 @@
 import Image from 'next/image'
 import storageKey from '@/constant/storage-key'
 import { setItem } from '@/utils/storage'
+import type { Surah } from '@/types/Surah'
 import { useEffect, useState } from 'react'
 
-export default function Verse({numberSurah, surah, verse, translations}: any) {
+type verseProps = {
+  numberSurah: string,
+  surah: Surah,
+  verse: string,
+  translations: {
+    id: {
+      name: string,
+      text: any
+    }
+  }
+}
+
+export default function Verse({numberSurah, surah, verse, translations}: verseProps) {
   const [query, setQuery] = useState("")
   const [isOpen, setIsOpen] = useState(false)
-  const setLastReadVerse = (numberSurah: any, surah: any, verse: any) => {
+  const setLastReadVerse = (numberSurah: string, surah: Surah, verse: string) => {
     const data: any = { numberSurah, surah, verse }
     setItem(storageKey.LAST_READ, data, storageKey.VERSION)
     if (isOpen) { return setIsOpen(true) }
@@ -36,6 +49,7 @@ export default function Verse({numberSurah, surah, verse, translations}: any) {
             </path>
         </svg>
         <input type="text" 
+          pattern="[0-9]*"
           onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
           onChange={event => setQuery(event.target.value)} 
           className="text-sm text-black rounded-lg appearance-none focus:outline-none focus:shadow-outline 
@@ -65,7 +79,7 @@ export default function Verse({numberSurah, surah, verse, translations}: any) {
               </button>
             </div>
             <div className='my-auto'>
-              <div className='text-[#0C1517] text-2xl font-bold arab mb-3 leading-[48px]'>{verse[text]}</div>
+              <div className='text-[#0C1517] text-2xl font-bold arab mb-3 leading-[52px]'>{verse[text]}</div>
               <div className='text-[#8A8A8E] text-xs leading-[18px]'>{translations.id.text[text]}</div>
             </div>
           </div>

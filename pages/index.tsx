@@ -6,8 +6,9 @@ import storageKey from '@/constant/storage-key'
 import Head from 'next/head'
 import Router from 'next/router'
 import { useEffect, useState } from 'react'
+import type { SurahInfo, SurahInfoJson } from '@/types/SurahInfo'
 
-export default function Home({listFullSurah}: any) {
+export default function Home({surah_info}: SurahInfoJson) {
   const [showButton, setShowButton] = useState(false)
   const cacheLastRead = getItem(storageKey.LAST_READ, storageKey.VERSION) || {}
   const hasCache = Object.keys(cacheLastRead).length > 0
@@ -90,7 +91,7 @@ export default function Home({listFullSurah}: any) {
             alt=''
           />
         </div>
-        <ListSurah listFullSurah={listFullSurah} />
+        <ListSurah surah_info={surah_info} />
       </main>
       {showButton && (
         <button onClick={scrollToTop} className="fixed p-3 rounded-full bottom-5 right-5 text-lg bg-[#29A19C] drop-shadow-custom">
@@ -105,13 +106,13 @@ export default function Home({listFullSurah}: any) {
 
 export async function getStaticProps() {
   const res = await import('@/data/surah-info.json')
-  const listFullSurah = res.surah_info.map((item: any) => {
+  const surah_info = res.surah_info.map((item: SurahInfo) => {
     return Object.assign({}, item, { index: item.index })
   })
 
   return {
     props: {
-      listFullSurah,
+      surah_info,
     },
   }
 }
