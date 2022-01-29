@@ -107,7 +107,14 @@ export default function Home({surah_info}: SurahInfoJson) {
 export async function getStaticProps() {
   const res = await import('@/data/surah-info.json')
   const surah_info = res.surah_info.map((item: SurahInfo) => {
-    return Object.assign({}, item, { index: item.index })
+    let surah = {
+      arabic: item.arabic,
+      translation: item.translation,
+      latin: item.latin,
+      ayah_count: item.ayah_count,
+      index: item.index
+    }
+    return Object.assign({}, surah, { index: item.index })
   })
 
   return {
