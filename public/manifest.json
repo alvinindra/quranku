@@ -3,7 +3,7 @@
   "short_name": "Quranku",
   "theme_color": "#29A19C",
   "background_color": "#ffffff",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
