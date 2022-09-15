@@ -1,6 +1,11 @@
 import Link from 'next/link';
+import type { SurahInfo } from '@/types/SurahInfo'
 
-export default function Surah({item}: any) {
+interface typeItemObject {
+  item: SurahInfo
+}
+
+export default function Surah({item}: typeItemObject) {
   return (
     <>
       <Link
