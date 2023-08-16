@@ -61,7 +61,7 @@ export default function Home({surah_info}: SurahInfoJson) {
           <div className='absolute z-10 left-5 top-5'>
             <div className='flex mb-6'>
               <Image 
-                className='rounded-lg w-full'
+                className='rounded-lg'
                 src='/images/icon/lastread.svg'
                 width={20}
                 height={20}
@@ -85,7 +85,7 @@ export default function Home({surah_info}: SurahInfoJson) {
             }
           </div>
           <Image 
-            className='rounded-lg w-full'
+            className='rounded-lg'
             src='/images/bg-lastread.svg'
             width={320}
             height={130}

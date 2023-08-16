@@ -13,15 +13,11 @@ export default function SurahPage({surah}: any) {
       </Head>
       <Header isFixed={true} isBack={true} title={surah.name_latin} />
       <div className="flex flex-col items-center justify-center px-[20px]">
-        
-        <style jsx>{`
-          .bg-detailsurah {
-            background: linear-gradient(135deg, #29A19C 0%, #5EC4BF 100%);
-            border-radius: 8px;
-          }
-        `}</style>
         <div className='relative w-full mb-6 mt-[68px]'>
-          <div className="bg-detailsurah pt-4 pb-3">
+          <div className="bg-detailsurah pt-4 pb-3" style={{
+            background: 'linear-gradient(135deg, #29A19C 0%, #5EC4BF 100%)',
+            borderRadius: '8px'
+          }}>
             <div className='text-center align-middle'>
               <div className='font-bold text-xl mb-[3px] text-white'>
                 {surah.name_latin}
@@ -31,7 +27,7 @@ export default function SurahPage({surah}: any) {
                 <>
                   <hr className='w-[220px] mx-auto mb-3' />
                   <Image 
-                    className='rounded-lg w-full'
+                    className='rounded-lg mx-auto'
                     src='/images/bismillah.svg'
                     width={142}
                     height={32}
