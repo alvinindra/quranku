@@ -5,7 +5,7 @@ import { getItem } from '@/utils/storage'
 import storageKey from '@/constant/storage-key'
 import Head from 'next/head'
 import Router from 'next/router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import type { SurahInfo, SurahInfoJson } from '@/types/SurahInfo'
 
 export default function Home({surah_info}: SurahInfoJson) {
@@ -21,7 +21,7 @@ export default function Home({surah_info}: SurahInfoJson) {
     }
   }
 
-  useEffect(() => {
+  const smoothScroll = useCallback(() => {
     window.addEventListener("scroll", () => {
       if (window.pageYOffset > 300) {
         setShowButton(true);
@@ -29,7 +29,11 @@ export default function Home({surah_info}: SurahInfoJson) {
         setShowButton(false);
       }
     });
-  }, []);
+  }, [])
+
+  useEffect(() => {
+    smoothScroll()
+  }, [smoothScroll]);
 
   const scrollToTop = () => {
     window.scrollTo({
