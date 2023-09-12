@@ -98,7 +98,7 @@ export default function Home({surah_info}: SurahInfoJson) {
         <ListSurah surah_info={surah_info} />
       </main>
       {showButton && (
-        <button onClick={scrollToTop} className="fixed p-3 rounded-full bottom-5 right-5 text-lg bg-[#29A19C] drop-shadow-custom">
+        <button onClick={scrollToTop} className="fixed p-3 rounded-full bottom-5 right-5 text-lg bg-[#29A19C] drop-shadow-custom dark:drop-shadow-dark">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 11H11V21H13V11H16L12 7L8 11ZM4 3V5H20V3H4Z" fill="white"/>
           </svg>

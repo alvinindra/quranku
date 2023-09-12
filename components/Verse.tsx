@@ -40,7 +40,7 @@ export default function Verse({numberSurah, surah, verse, translations}: versePr
   }, [isOpenFunction])
 
   return <>
-    <div className="flex mb-6 drop-shadow-custom">
+    <div className="relative flex mb-6 drop-shadow-custom dark:drop-shadow-dark">
       <svg className="flex absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24">
           <path
@@ -51,7 +51,7 @@ export default function Verse({numberSurah, surah, verse, translations}: versePr
         pattern="[0-9]*"
         onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
         onChange={event => setQuery(event.target.value)} 
-        className="text-sm text-black rounded-lg appearance-none focus:outline-none focus:shadow-outline 
+        className="text-sm text-black dark:text-white bg-white dark:bg-[#3d3d3d] rounded-lg appearance-none focus:outline-none focus:shadow-outline 
         pl-8 px-4 py-2 w-full" placeholder="Cari ayat (Contoh : 2)" />
     </div>
     {
@@ -62,7 +62,7 @@ export default function Verse({numberSurah, surah, verse, translations}: versePr
           return text
         }
       }).map((text: any, index: any) => (
-        <div key={index} id={index+1} className='relative flex flex-col mb-5 px-3 py-4 bg-white rounded-lg drop-shadow-custom'>
+        <div key={index} id={index+1} className='relative flex flex-col mb-5 px-3 py-4 bg-white dark:bg-[#3D3D3D] rounded-lg drop-shadow-custom dark:drop-shadow-dark'>
           <div className='flex mb-2'>
             <div className='flex-shrink-0 mr-5 my-auto rounded-full w-7 h-7 text-center border border-[#29A19C] 
             text-xs text-[#29A19C] flex justify-center'>
@@ -78,8 +78,8 @@ export default function Verse({numberSurah, surah, verse, translations}: versePr
             </button>
           </div>
           <div className='my-auto'>
-            <div className='text-[#0C1517] text-2xl font-bold arab mb-3 leading-[52px]'>{verse[text]}</div>
-            <div className='text-[#8A8A8E] text-xs leading-[18px]'>{translations.id.text[text]}</div>
+            <div className='text-[#0C1517] dark:text-white text-2xl font-bold arab mb-3 leading-[52px]'>{verse[text]}</div>
+            <div className='text-[#8A8A8E] dark:text-white text-xs leading-[18px]'>{translations.id.text[text]}</div>
           </div>
         </div>
       ))
