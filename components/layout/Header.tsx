@@ -25,7 +25,7 @@ export default function Header({
     `}
     >
       {isBack && (
-        <button className="absolute" onClick={handleClick}>
+        <button className="relative" onClick={handleClick}>
           <svg
             className="fill-[#0C1517] dark:fill-white"
             width="24"
