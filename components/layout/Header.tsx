@@ -21,7 +21,7 @@ export default function Header({
   return (
     <header
       className={`w-full flex bg-white dark:bg-[#333333] px-5 py-[14px] mb-[2px] z-10
-      ${isFixed ? 'fixed shadow-md dark:drop-shadow-dark left-0' : ''}
+      ${isFixed ? 'fixed shadow-md dark:drop-shadow-dark left-0' : 'relative'}
     `}
     >
       {isBack && (
@@ -49,7 +49,7 @@ export default function Header({
         </button>
       )}
       <div className="mx-auto">
-        <div className="text-base font-bold text-black dark:text-white">
+        <div className="absolute left-[50%] translate-x-[-50%] text-base font-bold text-black dark:text-white">
           {title}
         </div>
       </div>
