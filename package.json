@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@svgr/webpack": "^8.1.0",
     "autoprefixer": "^10.4.15",
     "next": "^13.4.16",
     "next-pwa": "^5.4.4",
