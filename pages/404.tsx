@@ -1,24 +1,25 @@
 import Header from '@/components/layout/Header'
 import Head from 'next/head'
 import Link from 'next/link'
-import IllustrationComingSoon from '@/components/icons/icon-illustration-comingsoon.svg'
+import Illustration404 from '@/components/icons/icon-illustration-404.svg'
 
-export default function ComingsoonPage() {
+export default function NotFoundPage() {
   return (
     <>
       <Head>
-        <title>Segera Hadir - Quranku</title>
+        <title>Halaman Tidak Ditemukan - Quranku</title>
       </Head>
-      <Header isFixed={true} isBack={true} title="Segera Hadir" />
+      <Header isFixed={true} isBack={true} title="404" />
       <div className="flex flex-col items-center justify-center px-[20px]">
         <div className="relative w-full mb-3 mt-[52px]"></div>
         <div className="flex flex-col w-full mt-[40px] text-center mb-6">
-          <IllustrationComingSoon className="mx-auto fill-white dark:fill-transparent" />
+          <Illustration404 className="mx-auto" />
           <div className="my-3 font-semibold text-sm">
-            Fitur Ini Segera Hadir
+            Halaman Tidak Ditemukan
           </div>
-          <div className="text-xs text-[#8A8A8E] dark:text-white">
-            Doakan kami untuk menyelesaikan fitur ini. <br /> Terima kasih.
+          <div className="text-xs text-[#8A8A8E] dark:text-white italic">
+            “Tunjukilah kami jalan yang lurus.” <br />
+            (QS. Al-Fatihah: 6)
           </div>
           <Link
             href="/"
