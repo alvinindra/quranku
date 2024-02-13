@@ -13,17 +13,20 @@ const listMenu = [
   {
     name: 'Dzikir Pagi',
     icon: <IconDzikirPagi />,
-    url: '/dzikir-pagi',
+    // url: '/dzikir-pagi',
+    url: '/comingsoon',
   },
   {
     name: 'Dzikir Petang',
     icon: <IconDzikirPetang />,
-    url: '/dzikir-petang',
+    // url: '/dzikir-petang',
+    url: '/comingsoon',
   },
   {
     name: 'Teks Arab',
     icon: <IconTeksArab />,
-    url: '/teks-arab',
+    // url: '/teks-arab',
+    url: '/comingsoon',
   },
 ]
 
