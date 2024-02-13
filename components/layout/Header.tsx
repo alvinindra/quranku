@@ -15,7 +15,7 @@ export default function Header({
   const router = useRouter()
 
   const handleClick = () => {
-    router.push('/')
+    router.back()
   }
 
   return (
@@ -49,7 +49,7 @@ export default function Header({
         </button>
       )}
       <div className="mx-auto">
-        <div className="absolute left-[50%] translate-x-[-50%] text-base font-bold text-black dark:text-white">
+        <div className="absolute left-[50%] translate-x-[-50%] text-base font-bold text-black dark:text-white line-clamp-1 text-nowrap">
           {title}
         </div>
       </div>

@@ -17,7 +17,7 @@ export default function DoaHarianPage({ doa_info }: DoaInfoJson) {
           {doa_info.map((item: DoaInfo) => (
             <Link href={'/doa-harian/' + item.slug} key={item.slug}>
               <div className="relative flex px-3 py-4 bg-white dark:bg-[#3D3D3D] rounded-lg drop-shadow-custom dark:drop-shadow-dark cursor-pointer">
-                <div className="me-auto text-xs">{item.title}</div>
+                <div className="me-auto text-xs font-medium">{item.title}</div>
                 <IconMore className="my-auto fill-white" />
               </div>
             </Link>
