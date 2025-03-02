@@ -19,7 +19,7 @@ export const sharedMetadata: Metadata = {
     siteName: `Quranku`,
     images: [
       {
-        url: `/images/icon/cover-quranku.jpg`,
+        url: `/images/cover-quranku.jpg`,
       },
     ],
   },
@@ -30,7 +30,7 @@ export const sharedMetadata: Metadata = {
     card: "summary_large_image",
     site: `@quranku`,
     creator: "@quranku",
-    images: `/images/icon/cover-quranku.jpg`,
+    images: `/images/cover-quranku.jpg`,
   },
   robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   description: `${description}`,
