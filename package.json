@@ -2,27 +2,36 @@
   "name": "mobileweb-quranku",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
+    "dev-inspect": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@svgr/webpack": "^8.1.0",
     "autoprefixer": "^10.4.15",
-    "next": "^13.4.16",
+    "clsx": "^2.1.1",
+    "next": "15.2.0",
     "next-pwa": "^5.4.4",
     "next-themes": "^0.2.1",
-    "postcss": "^8.4.28",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "^3.3.3"
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-toastify": "^11.0.5",
+    "tailwind-merge": "^2.2.1",
+    "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
-    "@types/node": "17.0.9",
-    "@types/react": "17.0.38",
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/node": "^20",
+    "@types/react": "19.0.10",
     "eslint": "8.7.0",
-    "eslint-config-next": "13.4.16",
-    "typescript": "4.5.4"
+    "eslint-config-next": "15.2.0",
+    "postcss": "^8.4.28",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.3",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "5.8.2"
   },
   "browserslist": {
     "production": [
@@ -36,5 +45,12 @@
     "ssr": [
       "node 12"
     ]
-  }
+  },
+  "overrides": {
+    "@types/react": "19.0.10"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "engineStrict": true
 }
