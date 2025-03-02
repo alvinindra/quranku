@@ -26,8 +26,8 @@ const listMenu = [
   {
     name: 'Teks Arab',
     icon: IconTeksArab,
-    // url: '/teks-arab',
-    url: '/comingsoon',
+    url: '/teks-arab',
+    // url: '/comingsoon',
   },
 ]
 

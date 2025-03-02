@@ -22,3 +22,9 @@ export interface DzikirItem {
   translation: string
   source: string
 }
+
+export interface TeksArabItem {
+  arabic: string
+  latin: string
+  translation: string
+}

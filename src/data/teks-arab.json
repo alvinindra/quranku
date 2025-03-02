@@ -1,0 +1,204 @@
+{
+  "teks_arab": [
+    {
+      "arabic": "جل جلاله",
+      "latin": "Jalla Jalaaluhu",
+      "translation": "Maha Suci dan Maha Agung."
+    },
+    {
+      "arabic": "سبحانه و تعالى",
+      "latin": "Subhanahu wa Ta'ala",
+      "translation": "Maha Suci dan Maha Tinggi"
+    },
+    {
+      "arabic": "صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ",
+      "latin": "Shallallahu 'alaihi wa sallam",
+      "translation": "Semoga Allah memberikan sholawat dan salam kepadanya"
+    },
+    {
+      "arabic": "السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ",
+      "latin": "Assalamualaikum warahmatullahi wabarakatuh",
+      "translation": "Semoga Allah melimpahkan keselamatan, Rahmat dan Keberkahan untukmu"
+    },
+    {
+      "arabic": "وَعَلَيْكُمُ السَّلاَمُ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ",
+      "latin": "Wa'alaikumsalam warahmatullahi wabarakatuh",
+      "translation": "Dan Semoga Allah melimpahkan Keselamatan, Rahmat dan Keberkahan untukmu"
+    },
+    {
+      "arabic": "بَارَكَ اللّهُ فِيْكَ",
+      "latin": "Barakallahu fiika",
+      "translation": "Semoga Allah memberkahimu"
+    },
+    {
+      "arabic": "بَارَكَ اللّهُ فِيْكُمْ",
+      "latin": "Barakallahu fiikum",
+      "translation": "Semoga Allah memberkahi kalian"
+    },
+    {
+      "arabic": "جَزَاكَ اللّهُ خَيْرً",
+      "latin": "Jazakallah khairan",
+      "translation": "Semoga Allah membalasmu dengan kebaikan (laki-laki)"
+    },
+    {
+      "arabic": "جَزَاكِ اللّهُ خَيْرً",
+      "latin": "Jazakillah khairan",
+      "translation": "Semoga Allah membalasmu dengan kebaikan (perempuan)"
+    },
+    {
+      "arabic": "جَزَاكُمُ اللّهُ خَيْرً",
+      "latin": "Jazakumullah khairan",
+      "translation": "Semoga Allah membalas kalian dengan kebaikan"
+    },
+    {
+      "arabic": "وَ اِيَّكُمْ",
+      "latin": "Wa Iyyakum",
+      "translation": "Dan kepada kalian juga"
+    },
+    {
+      "arabic": "اِ نْ شَآ ءَ اللّهُ",
+      "latin": "In šyāʾ Allāh",
+      "translation": "Jika Allah mengizinkan"
+    },
+    {
+      "arabic": "مَاشَآءَاللّهُ",
+      "latin": "Masyallah",
+      "translation": "Apa yang dikehendaki Allah"
+    },
+    {
+      "arabic": "وَٱللَّهُ أَعْلَمُ",
+      "latin": "Wallahu 'alam",
+      "translation": "hanya Allah yang Maha Mengetahui"
+    },
+    {
+      "arabic": "بِسْمِ اللّهِ",
+      "latin": "Bismi-llāh",
+      "translation": "Dengan menyebut nama Allah"
+    },
+    {
+      "arabic": "أٰمِيْنَ",
+      "latin": "Aamiin",
+      "translation": "Ya Allah, kabulkanlah"
+    },
+    {
+      "arabic": "اَسْتَغْفِرُاَللّهَ",
+      "latin": "Astaghfiru-llāh",
+      "translation": "Aku memohon ampun kepada Allah"
+    },
+    {
+      "arabic": "سُبْحَانَ اللّهُ",
+      "latin": "Subḥāna-llāh",
+      "translation": "Maha Suci Allah"
+    },
+    {
+      "arabic": "اَلْحَمْدُلِلّهِ",
+      "latin": "Al-ḥamdu li-llāh",
+      "translation": "Segala puji bagi Allah"
+    },
+    {
+      "arabic": "اَللّهُ أَكْبَرُ",
+      "latin": "Allāhu Akbar",
+      "translation": "Allah Maha Besar"
+    },
+    {
+      "arabic": "لَاحَوْلَ وَلَاقُوَّةَ إِلَّابِاللّهِ",
+      "latin": "Lā ḥawla wa lā quwwata illā bi-llāh",
+      "translation": "Tidak ada daya dan kekuatan kecuali dengan pertolongan Allah"
+    },
+    {
+      "arabic": "حَسْبُنَااللّهُ وَنِعْمَالْوَكِيلُ",
+      "latin": "Ḥasbunā-llāhu wa niʿma al-wakīl",
+      "translation": "Cukuplah Allah menjadi penolong kami dan Allah adalah sebaik-baik pelindung"
+    },
+    {
+      "arabic": "لَا إِلَهَ إِلَّا اللّهُ",
+      "latin": "Lā ilāha illā-llāh",
+      "translation": "Tiada Tuhan selain Allah"
+    },
+    {
+      "arabic": "أَسْتَغْفِرُاللّهَ وَأَتُوبُ إِلَيْهِ",
+      "latin": "Astaghfiru-llāh wa atūbu ilayh",
+      "translation": "Aku memohon ampun kepada Allah dan aku bertaubat kepada-Nya"
+    },
+    {
+      "arabic": "حَلاَلً",
+      "latin": "Halal",
+      "translation": "Halal"
+    },
+    {
+      "arabic": "حَرَمً",
+      "latin": "Haram",
+      "translation": "Haram"
+    },
+    {
+      "arabic": "شكرا",
+      "latin": "Syukron",
+      "translation": "Terimakasih"
+    },
+    {
+      "arabic": "عفوا",
+      "latin": "Afwan",
+      "translation": "Maaf"
+    },
+    {
+      "arabic": "تفضل",
+      "latin": "Tafadhol",
+      "translation": "Silakan"
+    },
+    {
+      "arabic": "أحسن",
+      "latin": "Ahsan",
+      "translation": "Baik"
+    },
+    {
+      "arabic": "نعم",
+      "latin": "Na'am",
+      "translation": "Iya"
+    },
+    {
+      "arabic": "صحيح",
+      "latin": "Shahih",
+      "translation": "Benar"
+    },
+    {
+      "arabic": "حَفِظَهُ اللهُ",
+      "latin": "Hafidzahullah",
+      "translation": "Semoga Allah menjaganya"
+    },
+    {
+      "arabic": "رَحِمَهُ اللهُ",
+      "latin": "Rahimahullah",
+      "translation": "Semoga Allah merahmatinya"
+    },
+    {
+      "arabic": "الله المستعان",
+      "latin": "Allahul musta'an",
+      "translation": "Hanya Allah sajalah tempat meminta pertolongan"
+    },
+    {
+      "arabic": "الله يهديك",
+      "latin": "Allahu Yahdik",
+      "translation": "Semoga Allah memberi kita petunjuk (hidayah)"
+    },
+    {
+      "arabic": "رضي الله عنه",
+      "latin": "Radiyallahu 'Anhu",
+      "translation": "Semoga Allah meridhoinya (laki-laki)"
+    },
+    {
+      "arabic": "رضي الله عنها",
+      "latin": "Radiyallahu 'Anha",
+      "translation": "Semoga Allah meridhoinya (perempuan)"
+    },
+    {
+      "arabic": "رضی اللہ عنھم",
+      "latin": "Radhiyallahu 'Anhum",
+      "translation": "Semoga Allah meridhoi mereka"
+    },
+    {
+      "arabic": "عليه السلام",
+      "latin": "Alaihi salam",
+      "translation": "Semoga keselamatan dilimpahkan kepadanya"
+    }
+  ]
+}
