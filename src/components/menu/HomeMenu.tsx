@@ -14,14 +14,14 @@ const listMenu = [
   {
     name: 'Dzikir Pagi',
     icon: IconDzikirPagi,
-    // url: '/dzikir-pagi',
-    url: '/comingsoon',
+    url: '/dzikir-pagi',
+    // url: '/comingsoon',
   },
   {
     name: 'Dzikir Petang',
     icon: IconDzikirPetang,
-    // url: '/dzikir-petang',
-    url: '/comingsoon',
+    url: '/dzikir-petang',
+    // url: '/comingsoon',
   },
   {
     name: 'Teks Arab',

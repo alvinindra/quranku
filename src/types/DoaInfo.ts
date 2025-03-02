@@ -15,3 +15,10 @@ export interface DoaInfo {
 export interface DoaInfoJson {
   doa_info: DoaInfo[],
 }
+
+export interface DzikirItem {
+  title: string
+  arabic: string
+  translation: string
+  source: string
+}
