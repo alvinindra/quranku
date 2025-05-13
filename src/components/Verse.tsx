@@ -60,7 +60,7 @@ export default function Verse({
         pattern="[0-9]*"
         onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
         onChange={(event) => setQuery(event.target.value)}
-        className="text-sm text-black dark:text-white bg-white dark:bg-[#3d3d3d] rounded-lg appearance-none focus:outline-none focus:shadow-outline 
+        className="text-sm text-black dark:text-white bg-white dark:bg-[#3d3d3d] rounded-lg appearance-none focus:outline-hidden focus:shadow-outline 
       pl-8 px-4 py-2 w-full"
         placeholder="Cari ayat (Contoh : 2)"
       />
@@ -81,13 +81,13 @@ export default function Verse({
         >
           <div className="flex mb-2">
             <div
-              className="flex-shrink-0 mr-5 my-auto rounded-full w-7 h-7 text-center border border-[#29A19C] 
+              className="shrink-0 mr-5 my-auto rounded-full w-7 h-7 text-center border border-[#29A19C] 
           text-xs text-[#29A19C] flex justify-center"
             >
               <span className="my-auto">{text}</span>
             </div>
             <button
-              className="ml-auto"
+              className="ml-auto cursor-pointer"
               onClick={() => setLastReadVerse(numberSurah, surah, text)}
             >
               <Image

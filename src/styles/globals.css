@@ -1,24 +1,37 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-html,
-body {
-  padding: 0;
-  margin: 0;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+  body {
+    @apply font-sans min-h-screen antialiased bg-white dark:bg-[#333333] max-w-[500px] mx-auto transition-colors dark:text-white;
+  }
+
+  .arab {
+    font-weight: normal;
+    text-align: right;
+    direction: rtl;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
-.arab {
-  font-weight: normal;
-  text-align: right;
-  direction: rtl;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
+@theme {
+  --font-sans: Poppins, sans-serif;
+  --font-display: Isep Misbah;
+  --drop-shadow-custom: 0px 2px 16px rgba(138, 138, 142, 0.25);
+  --drop-shadow-dark: 0px 3px 8px 4px #2f2f2f;
 }

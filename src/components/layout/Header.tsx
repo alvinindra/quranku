@@ -29,7 +29,7 @@ export default function Header({
       )}
     >
       {isBack && (
-        <button className="relative" onClick={handleClick}>
+        <button className="relative cursor-pointer" onClick={handleClick}>
           <svg
             className="fill-[#0C1517] dark:fill-white"
             width="24"

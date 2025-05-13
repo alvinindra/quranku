@@ -40,7 +40,7 @@ export default async function DoaHarianPage({ params }: {
             >
               {item.title && (
                 <div className="flex mb-2">
-                  <div className="flex-shrink-0 mr-5 my-auto text-center text-xs text-[#29A19C] flex justify-center truncate">
+                  <div className="shrink-0 mr-5 my-auto text-center text-xs text-[#29A19C] flex justify-center truncate">
                     {item.title}
                   </div>
                 </div>

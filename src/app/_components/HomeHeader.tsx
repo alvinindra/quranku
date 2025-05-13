@@ -1,14 +1,21 @@
 "use client"
 
 import storageKey from "@/constant/storage-key"
+import { cn } from "@/lib/utils"
 import { getItem } from "@/utils/storage"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export default function HomeHeader() {
   const router = useRouter()
-  const cacheLastRead = getItem(storageKey.LAST_READ, storageKey.VERSION) || {}
+  const [cacheLastRead, setCacheLastRead] = useState<any>({})
   const hasCache = Object.keys(cacheLastRead).length > 0
+
+  useEffect(() => {
+    const lastRead = getItem(storageKey.LAST_READ, storageKey.VERSION) || {}
+    setCacheLastRead(lastRead)
+  }, [])
 
   const gotoLastRead = () => {
     if (hasCache) {
@@ -17,7 +24,7 @@ export default function HomeHeader() {
   }
 
   return <div
-    className={`relative w-full ${hasCache ? 'cursor-pointer' : ''}`}
+    className={cn("relative w-full", hasCache && "cursor-pointer")}
     onClick={gotoLastRead}
   >
     <div className="absolute z-10 left-5 top-5">
