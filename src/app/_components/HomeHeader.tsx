@@ -62,6 +62,7 @@ export default function HomeHeader() {
       width={320}
       height={130}
       priority
+      loading="eager"
       alt=""
     />
   </div>
