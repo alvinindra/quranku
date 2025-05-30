@@ -41,7 +41,7 @@ export default function HomeHeader() {
       {hasCache ? (
         <>
           <div className="font-bold text-base mb-[3px] text-white">
-            {cacheLastRead.surah}
+            {cacheLastRead.surah?.name_latin || cacheLastRead.surah?.name || ""}
           </div>
           <div className="text-xs text-white">
             Ayat {cacheLastRead.verse}

@@ -22,9 +22,9 @@ export default function RootLayout({
     <>
       <html className="scroll-smooth" lang="id" suppressHydrationWarning>
         <body
-          className={`${isepMisbah.variable} ${poppins.variable} font-sans min-h-screen bg-transparent antialiased bg-white dark:bg-[#333333] max-w-[500px] mx-auto transition-colors dark:bg-dark dark:text-white`}
+          className={`${isepMisbah.variable} ${poppins.variable} font-sans min-h-screen antialiased bg-white dark:bg-[#333333] max-w-[500px] mx-auto transition-colors dark:bg-dark dark:text-white`}
         >
-          <ThemeProvider attribute="class">
+          <ThemeProvider defaultTheme="dark" attribute="class">
             {children}
           </ThemeProvider>
         </body>
