@@ -2,12 +2,11 @@
 ## About Quranku
 ![image](./public/images/cover-quranku.jpg)
 
-The design of Quranku is from: 
+The sources of Quranku is from: 
 - Design App: [Figma - Quranku](https://www.figma.com/file/3dFh788Uk8wWYlhh7Kh62F/Quranku?type=design&node-id=5%3A1567&mode=dev).
 - Assets: [Figma - Quran App Concept](https://www.figma.com/community/file/966921639679380402).
 - Doa, Dzikir, Teks Arab: Haqq - Quran.
-
-
+- Data Quran: [Quran JSON](https://github.com/rioastamal/quran-json)
 
 ## Getting Started
 This is a [Next.js - App Router](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
