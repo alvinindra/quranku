@@ -11,7 +11,7 @@ The sources of Quranku is from:
 This is a [Next.js - App Router](https://nextjs.org/) project modernly configured and powered by **Bun** as the package manager and runner, and running on Node LTS.
 
 ### Prerequisites
-- **Node.js**: `>=22.0.0` (LTS)
+- **Node.js**: `>=24.15.0` (LTS)
 - **Bun**: `^1.1.0` (v1.3.13 recommended)
 
 ### Installation
