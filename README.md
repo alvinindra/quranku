@@ -1,4 +1,3 @@
-
 ## About Quranku
 ![image](./public/images/cover-quranku.jpg)
 
@@ -9,21 +8,39 @@ The sources of Quranku is from:
 - Data Quran: [Quran JSON](https://github.com/rioastamal/quran-json)
 
 ## Getting Started
-This is a [Next.js - App Router](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js - App Router](https://nextjs.org/) project modernly configured and powered by **Bun** as the package manager and runner, and running on Node LTS.
 
-```
-Node: v22.13.0
-```
+### Prerequisites
+- **Node.js**: `>=22.0.0` (LTS)
+- **Bun**: `^1.1.0` (v1.3.13 recommended)
 
-First, install the dependencies:
+### Installation
+Install the dependencies using Bun:
 ```bash
-pnpm install
+bun install
 ```
 
-Run the development server:
-
+### Development
+Run the development server with hot-reloading (using Next.js Turbopack):
 ```bash
-pnpm run dev
+bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Build and Production
+Compile the project for production:
+```bash
+bun run build
+```
+
+Start the production server:
+```bash
+bun run start
+```
+
+### Code Quality & Formatting
+Run ESLint flat checks:
+```bash
+bun run lint
+```
