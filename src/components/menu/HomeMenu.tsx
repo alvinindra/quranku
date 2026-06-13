@@ -3,7 +3,10 @@ import IconDoaHarian from '@/components/icons/icon-doa-harian.svg'
 import IconDzikirPagi from '@/components/icons/icon-dzikir-pagi.svg'
 import IconDzikirPetang from '@/components/icons/icon-dzikir-petang.svg'
 import IconTeksArab from '@/components/icons/icon-teks-arab.svg'
-import IconMore from '@/components/icons/icon-more.svg'
+import IconBookmark from '@/components/icons/icon-bookmark.svg'
+import IconJuz from '@/components/icons/icon-juz.svg'
+import IconJadwalSholat from '@/components/icons/icon-jadwal-sholat.svg'
+import IconKiblat from '@/components/icons/icon-kiblat.svg'
 import Image from 'next/image'
 
 const listMenu = [
@@ -32,25 +35,22 @@ const listMenu = [
   },
   {
     name: 'Simpanan',
-    icon: '/images/icon/bookmark.svg',
+    icon: IconBookmark,
     url: '/bookmarks',
   },
   {
     name: 'Juz',
-    // Reuse existing bookmark icon asset (no dedicated juz icon available)
-    icon: '/images/icon/bookmark.svg',
+    icon: IconJuz,
     url: '/juz',
   },
   {
     name: 'Jadwal Sholat',
-    // Reuse existing teks-arab icon asset (no dedicated prayer icon available)
-    icon: IconTeksArab,
+    icon: IconJadwalSholat,
     url: '/jadwal-sholat',
   },
   {
     name: 'Kiblat',
-    // Reuse existing "more" icon asset (no dedicated qibla icon available)
-    icon: IconMore,
+    icon: IconKiblat,
     url: '/qibla',
   },
 ]
