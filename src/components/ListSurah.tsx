@@ -1,11 +1,21 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Surah from "./Surah";
 
+import storageKey from "@/constant/storage-key";
+import { getItem } from "@/utils/storage";
+import type { LastRead } from "@/types/LastRead";
 import type { SurahInfo, SurahInfoJson } from "@/types/SurahInfo";
 
 export default function ListSurah({ surah_info }: SurahInfoJson) {
   const [query, setQuery] = useState("");
+  const [lastReadSurah, setLastReadSurah] = useState<string | null>(null);
+
+  // localStorage is client-only: read on mount to avoid hydration mismatch.
+  useEffect(() => {
+    const lastRead = getItem<LastRead>(storageKey.LAST_READ, storageKey.VERSION);
+    setLastReadSurah(lastRead?.numberSurah ?? null);
+  }, []);
 
   const filtered = useMemo(
     () =>
@@ -37,7 +47,11 @@ export default function ListSurah({ surah_info }: SurahInfoJson) {
       </div>
       <div className="relative flex flex-col">
         {filtered.map((item: SurahInfo) => (
-          <Surah key={item.index} item={item} />
+          <Surah
+            key={item.index}
+            item={item}
+            isLastRead={item.index.toString() === lastReadSurah}
+          />
         ))}
       </div>
     </>

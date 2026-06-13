@@ -4,6 +4,7 @@ import Verse from "@/components/Verse";
 import SurahContextBlock from "@/components/surah/SurahContextBlock";
 import ReadingPrefsProvider from "@/components/reading/ReadingPrefsProvider";
 import ReadingSettings from "@/components/reading/ReadingSettings";
+import ResumeReading from "@/components/reading/ResumeReading";
 import surahInfo from "@/data/surah-info.json";
 import { Metadata } from "next";
 import { SurahInfo } from "@/types/SurahInfo";
@@ -91,6 +92,7 @@ export default async function SurahPage({ params }: {
               <SurahContextBlock title="Tentang Surah" html={info.opening} />
             )}
             <ReadingSettings />
+            <ResumeReading numberSurah={surah.number} />
             <Verse
               numberSurah={surah.number}
               surah={surah.name_latin}
