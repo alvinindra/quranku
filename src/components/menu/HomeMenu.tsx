@@ -46,6 +46,12 @@ const listMenu = [
     icon: '/images/icon/bookmark.svg',
     url: '/juz',
   },
+  {
+    name: 'Jadwal Sholat',
+    // Reuse existing teks-arab icon asset (no dedicated prayer icon available)
+    icon: IconTeksArab,
+    url: '/jadwal-sholat',
+  },
 ]
 
 export default function HomeMenu() {
