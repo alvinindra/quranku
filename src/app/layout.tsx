@@ -6,6 +6,7 @@ import { isepMisbah, poppins } from "./fonts/fonts"
 
 export const metadata: Metadata = {
   ...sharedMetadata,
+  manifest: "/manifest.json",
   // override here
 }
 
