@@ -3,12 +3,12 @@
 import Image from "next/image"
 import storageKey from '@/constant/storage-key'
 import { setItem } from '@/utils/storage'
-import type { Surah } from '@/types/Surah'
+import type { LastRead } from '@/types/LastRead'
 import { useCallback, useEffect, useState } from 'react'
 
 type verseProps = {
   numberSurah: string
-  surah: Surah
+  surah: string
   verse: string
   translations: {
     id: {
@@ -28,11 +28,11 @@ export default function Verse({
   const [isOpen, setIsOpen] = useState(false)
   const setLastReadVerse = (
     numberSurah: string,
-    surah: Surah,
+    surah: string,
     verse: string
   ) => {
-    const data: any = { numberSurah, surah, verse }
-    setItem(storageKey.LAST_READ, data, storageKey.VERSION)
+    const data: LastRead = { numberSurah, surah, verse }
+    setItem<LastRead>(storageKey.LAST_READ, data, storageKey.VERSION)
     if (isOpen) {
       return setIsOpen(true)
     }

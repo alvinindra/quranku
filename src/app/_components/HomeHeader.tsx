@@ -3,17 +3,18 @@
 import storageKey from "@/constant/storage-key"
 import { cn } from "@/lib/utils"
 import { getItem } from "@/utils/storage"
+import type { LastRead } from "@/types/LastRead"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 export default function HomeHeader() {
   const router = useRouter()
-  const [cacheLastRead, setCacheLastRead] = useState<any>({})
-  const hasCache = Object.keys(cacheLastRead).length > 0
+  const [cacheLastRead, setCacheLastRead] = useState<LastRead | null>(null)
+  const hasCache = cacheLastRead !== null
 
   useEffect(() => {
-    const lastRead = getItem(storageKey.LAST_READ, storageKey.VERSION) || {}
+    const lastRead = getItem<LastRead>(storageKey.LAST_READ, storageKey.VERSION)
     setCacheLastRead(lastRead)
   }, [])
 
@@ -41,7 +42,9 @@ export default function HomeHeader() {
       {hasCache ? (
         <>
           <div className="font-bold text-base mb-[3px] text-white">
-            {cacheLastRead.surah?.name_latin || cacheLastRead.surah?.name || ""}
+            {typeof cacheLastRead?.surah === 'string'
+              ? cacheLastRead.surah
+              : (cacheLastRead?.surah as any)?.name_latin ?? ''}
           </div>
           <div className="text-xs text-white">
             Ayat {cacheLastRead.verse}

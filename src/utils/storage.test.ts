@@ -7,17 +7,18 @@ describe('storage', () => {
   })
 
   it('case 1: setItem then getItem with matching version returns value', () => {
-    setItem('K', { a: 1 } as any, '1.0.0')
-    expect(getItem('K', '1.0.0')).toEqual({ a: 1 })
+    setItem('K', { a: 1 }, '1.0.0')
+    expect(getItem<{ a: number }>('K', '1.0.0')).toEqual({ a: 1 })
   })
 
-  it('case 2: getItem with mismatched version returns undefined', () => {
-    setItem('K', { a: 1 } as any, '1.0.0')
-    expect(getItem('K', '2.0.0')).toBeUndefined()
+  it('case 2: getItem with mismatched version returns null and removes entry', () => {
+    setItem('K', { a: 1 }, '1.0.0')
+    expect(getItem('K', '2.0.0')).toBeNull()
+    expect(localStorage.getItem('K')).toBeNull()
   })
 
-  it('case 3: getItem for missing key returns undefined', () => {
-    expect(getItem('MISSING', '1.0.0')).toBeUndefined()
+  it('case 3: getItem for missing key returns null', () => {
+    expect(getItem('MISSING', '1.0.0')).toBeNull()
   })
 
   it('case 4: corrupt JSON returns null', () => {
