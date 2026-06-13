@@ -85,6 +85,7 @@ export default async function SurahPage({ params }: {
             surah={surah.name_latin}
             verse={surah.text}
             translations={surah.translations}
+            tafsir={surah.tafsir}
           />
         </div>
       </div>

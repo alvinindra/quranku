@@ -4,7 +4,7 @@ import Image from "next/image";
 import storageKey from "@/constant/storage-key";
 import { setItem } from "@/utils/storage";
 import type { LastRead } from "@/types/LastRead";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type verseProps = {
   numberSurah: string;
@@ -16,6 +16,15 @@ type verseProps = {
       text: any;
     };
   };
+  tafsir?: {
+    id: {
+      kemenag: {
+        name: string;
+        source: string;
+        text: Record<string, string>;
+      };
+    };
+  };
 };
 
 export default function Verse({
@@ -23,9 +32,23 @@ export default function Verse({
   surah,
   verse,
   translations,
+  tafsir,
 }: verseProps) {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [openTafsir, setOpenTafsir] = useState<Set<string>>(new Set());
+
+  const toggleTafsir = (ayah: string) => {
+    setOpenTafsir((prev) => {
+      const next = new Set(prev);
+      if (next.has(ayah)) {
+        next.delete(ayah);
+      } else {
+        next.add(ayah);
+      }
+      return next;
+    });
+  };
   const setLastReadVerse = (
     numberSurah: string,
     surah: string,
@@ -104,6 +127,42 @@ export default function Verse({
             <div className="text-xs leading-[18px] text-[#8A8A8E] dark:text-white">
               {translations.id.text[text]}
             </div>
+            {tafsir?.id?.kemenag?.text?.[text] && (
+              <div className="mt-3 border-t border-gray-200 pt-2 dark:border-gray-600">
+                <button
+                  type="button"
+                  onClick={() => toggleTafsir(text)}
+                  aria-expanded={openTafsir.has(text)}
+                  className="flex cursor-pointer items-center gap-1 text-xs font-semibold text-[#29A19C]"
+                >
+                  {openTafsir.has(text) ? "Sembunyikan Tafsir" : "Lihat Tafsir"}
+                  <svg
+                    className={`h-3 w-3 transition-transform ${
+                      openTafsir.has(text) ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </button>
+                {openTafsir.has(text) && (
+                  <div className="mt-2 text-xs leading-[20px] whitespace-pre-line text-[#8A8A8E] dark:text-white">
+                    {tafsir.id.kemenag.text[text]}
+                    <div className="mt-2 text-[11px] text-gray-400 italic">
+                      — {tafsir.id.kemenag.name}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       ))}
