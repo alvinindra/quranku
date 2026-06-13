@@ -29,6 +29,11 @@ const listMenu = [
     url: '/teks-arab',
     // url: '/comingsoon',
   },
+  {
+    name: 'Simpanan',
+    icon: '/images/icon/bookmark.svg',
+    url: '/bookmarks',
+  },
 ]
 
 export default function HomeMenu() {
@@ -46,7 +51,7 @@ export default function HomeMenu() {
 function MenuItem({ item }: any) {
   return (
     <Link href={item?.url} className="flex text-center flex-col">
-      <div className="mx-auto"><Image src={item?.icon} alt="" /> </div>
+      <div className="mx-auto"><Image src={item?.icon} width={24} height={24} alt="" /> </div>
       <div className="text-[11px] whitespace-normal max-w-[51px] leading-3 mt-1 text-[#29A19C]">
         {item?.name}
       </div>

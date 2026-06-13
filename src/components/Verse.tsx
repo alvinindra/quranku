@@ -3,9 +3,12 @@
 import Image from "next/image";
 import storageKey from "@/constant/storage-key";
 import { setItem } from "@/utils/storage";
+import { getBookmarks, toggleBookmark } from "@/utils/bookmarks";
 import type { LastRead } from "@/types/LastRead";
 import { useReadingPrefs } from "@/components/reading/ReadingPrefsProvider";
 import { useEffect, useMemo, useState } from "react";
+import { useTheme } from "next-themes";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 type verseProps = {
   numberSurah: string;
@@ -36,9 +39,21 @@ export default function Verse({
   tafsir,
 }: verseProps) {
   const { prefs } = useReadingPrefs();
+  const { theme } = useTheme();
   const [query, setQuery] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
   const [openTafsir, setOpenTafsir] = useState<Set<string>>(new Set());
+  const [bookmarkedVerses, setBookmarkedVerses] = useState<Set<string>>(
+    new Set(),
+  );
+
+  // localStorage is client-only: read saved bookmarks on mount to avoid
+  // SSR/hydration mismatches.
+  useEffect(() => {
+    const saved = getBookmarks()
+      .filter((item) => item.numberSurah === numberSurah)
+      .map((item) => item.verse);
+    setBookmarkedVerses(new Set(saved));
+  }, [numberSurah]);
 
   const toggleTafsir = (ayah: string) => {
     setOpenTafsir((prev) => {
@@ -51,17 +66,37 @@ export default function Verse({
       return next;
     });
   };
-  const setLastReadVerse = (
+  const handleBookmark = (
     numberSurah: string,
     surah: string,
     verse: string,
   ) => {
     const data: LastRead = { numberSurah, surah, verse };
+    // Keep updating LAST_READ so the home "Terakhir Dibaca" card still works.
     setItem<LastRead>(storageKey.LAST_READ, data, storageKey.VERSION);
-    if (isOpen) {
-      return setIsOpen(true);
-    }
-    setIsOpen(true);
+
+    const added = toggleBookmark(data);
+    setBookmarkedVerses((prev) => {
+      const next = new Set(prev);
+      if (added) {
+        next.add(verse);
+      } else {
+        next.delete(verse);
+      }
+      return next;
+    });
+
+    toast(added ? "Ayat disimpan" : "Ayat dihapus dari simpanan", {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: theme === "dark" ? "dark" : "light",
+      transition: Bounce,
+    });
   };
 
   const filteredVerseKeys = useMemo(
@@ -69,12 +104,6 @@ export default function Verse({
       Object.keys(verse).filter((text) => query === "" || text.includes(query)),
     [verse, query],
   );
-
-  useEffect(() => {
-    if (!isOpen) return;
-    const t = setTimeout(() => setIsOpen(false), 3000);
-    return () => clearTimeout(t);
-  }, [isOpen]);
 
   return (
     <>
@@ -107,8 +136,19 @@ export default function Verse({
               <span className="my-auto">{text}</span>
             </div>
             <button
-              className="ml-auto cursor-pointer"
-              onClick={() => setLastReadVerse(numberSurah, surah, text)}
+              type="button"
+              aria-label={
+                bookmarkedVerses.has(text)
+                  ? "Hapus dari simpanan"
+                  : "Simpan ayat"
+              }
+              aria-pressed={bookmarkedVerses.has(text)}
+              className={`ml-auto flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition ${
+                bookmarkedVerses.has(text)
+                  ? "opacity-100 ring-2 ring-[#29A19C]"
+                  : "opacity-40 hover:opacity-70"
+              }`}
+              onClick={() => handleBookmark(numberSurah, surah, text)}
             >
               <Image
                 src="/images/icon/bookmark.svg"
@@ -176,29 +216,7 @@ export default function Verse({
           </div>
         </div>
       ))}
-      {isOpen && (
-        <div className="fixed bottom-[50px] left-1/2 z-50 w-fit -translate-x-1/2 translate-y-1/2 rounded-md bg-[#29A19C] px-5 py-4 text-white transition duration-300">
-          <div className="flex items-center space-x-2">
-            <svg
-              className="h-7 w-7"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="3"
-                d="M5 13l4 4L19 7"
-              ></path>
-            </svg>
-            <p className="text-sm font-semibold whitespace-nowrap">
-              Berhasil menyimpan bacaan
-            </p>
-          </div>
-        </div>
-      )}
+      <ToastContainer />
     </>
   );
 }
