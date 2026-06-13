@@ -47,6 +47,24 @@ export default function QiblaCompass() {
   const listenerRef = useRef<((event: DeviceOrientationEvent) => void) | null>(
     null,
   );
+  // Whether at least one usable heading has arrived, and the support timeout.
+  const gotReadingRef = useRef(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const detachListener = useCallback(() => {
+    if (listenerRef.current) {
+      window.removeEventListener(
+        "deviceorientationabsolute",
+        listenerRef.current,
+      );
+      window.removeEventListener("deviceorientation", listenerRef.current);
+      listenerRef.current = null;
+    }
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  }, []);
 
   // Geolocation is browser-only: request it after mount, never during SSR.
   useEffect(() => {
@@ -72,27 +90,28 @@ export default function QiblaCompass() {
 
   // Remove any device-orientation listener on unmount.
   useEffect(() => {
-    return () => {
-      if (listenerRef.current) {
-        window.removeEventListener(
-          "deviceorientationabsolute",
-          listenerRef.current,
-        );
-        window.removeEventListener("deviceorientation", listenerRef.current);
-        listenerRef.current = null;
-      }
-    };
-  }, []);
+    return () => detachListener();
+  }, [detachListener]);
 
   const handleOrientation = useCallback((event: DeviceOrientationEvent) => {
     const evt = event as OrientationEventWithCompass;
+    let nextHeading: number | null = null;
     if (typeof evt.webkitCompassHeading === "number") {
-      // iOS: webkitCompassHeading is already relative to true/magnetic north.
-      setHeading(evt.webkitCompassHeading);
-    } else if (typeof evt.alpha === "number") {
-      // Other browsers: convert alpha to a compass heading.
-      setHeading((360 - evt.alpha) % 360);
+      // iOS: webkitCompassHeading is already relative to north.
+      nextHeading = evt.webkitCompassHeading;
+    } else if (typeof evt.alpha === "number" && event.absolute) {
+      // Only trust alpha when it is absolute (relative alpha points the wrong
+      // way because it is measured from the device's start orientation).
+      nextHeading = (360 - evt.alpha) % 360;
     }
+    if (nextHeading === null) return;
+    gotReadingRef.current = true;
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setCompassError(null);
+    setHeading(nextHeading);
   }, []);
 
   const enableCompass = useCallback(async () => {
@@ -118,11 +137,24 @@ export default function QiblaCompass() {
     }
 
     listenerRef.current = handleOrientation;
+    gotReadingRef.current = false;
     // Prefer the absolute orientation event when available.
     window.addEventListener("deviceorientationabsolute", handleOrientation);
     window.addEventListener("deviceorientation", handleOrientation);
     setCompassActive(true);
-  }, [handleOrientation]);
+
+    // If no usable reading arrives, the device has no (absolute) compass —
+    // tell the user instead of leaving a silent, dead static arrow.
+    timeoutRef.current = setTimeout(() => {
+      if (!gotReadingRef.current) {
+        setCompassError(
+          "Perangkat ini tidak mengirim arah kompas. Pakai tampilan statis: arahkan bagian atas perangkat ke Utara, lalu ikuti derajat di bawah.",
+        );
+        setCompassActive(false);
+        detachListener();
+      }
+    }, 3000);
+  }, [handleOrientation, detachListener]);
 
   // Arrow rotation: when the live compass heading is known, point the arrow at
   // (qiblaBearing - heading). Otherwise fall back to a north-up static arrow.
