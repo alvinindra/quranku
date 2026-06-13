@@ -40,12 +40,18 @@ const listMenu = [
     icon: IconMore,
     url: '/search',
   },
+  {
+    name: 'Juz',
+    // Reuse existing bookmark icon asset (no dedicated juz icon available)
+    icon: '/images/icon/bookmark.svg',
+    url: '/juz',
+  },
 ]
 
 export default function HomeMenu() {
   return (
     <>
-      <div className="relative flex justify-around my-5 px-3 py-4 bg-white dark:bg-[#3D3D3D] rounded-lg drop-shadow-custom dark:drop-shadow-dark cursor-pointer">
+      <div className="relative grid grid-cols-4 gap-y-4 justify-items-center my-5 px-3 py-4 bg-white dark:bg-[#3D3D3D] rounded-lg drop-shadow-custom dark:drop-shadow-dark cursor-pointer">
         {listMenu.map((item) => (
           <MenuItem item={item} key={item.name} />
         ))}
