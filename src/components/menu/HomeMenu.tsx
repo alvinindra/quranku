@@ -52,6 +52,12 @@ const listMenu = [
     icon: IconTeksArab,
     url: '/jadwal-sholat',
   },
+  {
+    name: 'Kiblat',
+    // Reuse existing "more" icon asset (no dedicated qibla icon available)
+    icon: IconMore,
+    url: '/qibla',
+  },
 ]
 
 export default function HomeMenu() {
