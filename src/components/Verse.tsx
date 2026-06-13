@@ -6,7 +6,7 @@ import { setItem } from "@/utils/storage";
 import { getBookmarks, toggleBookmark } from "@/utils/bookmarks";
 import type { LastRead } from "@/types/LastRead";
 import { useReadingPrefs } from "@/components/reading/ReadingPrefsProvider";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 
@@ -45,6 +45,13 @@ export default function Verse({
   const [bookmarkedVerses, setBookmarkedVerses] = useState<Set<string>>(
     new Set(),
   );
+  // Audio recitation: a single shared HTMLAudioElement so only one ayah plays
+  // at a time. playingAyah holds the currently-playing verse key (or null).
+  const [playingAyah, setPlayingAyah] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  // Holds the latest ordered verse keys so the "ended" handler can auto-advance
+  // without capturing a stale closure.
+  const verseKeysRef = useRef<string[]>([]);
 
   // localStorage is client-only: read saved bookmarks on mount to avoid
   // SSR/hydration mismatches.
@@ -105,6 +112,84 @@ export default function Verse({
     [verse, query],
   );
 
+  // Keep the auto-advance reference in sync with the visible/ordered keys.
+  useEffect(() => {
+    verseKeysRef.current = filteredVerseKeys;
+  }, [filteredVerseKeys]);
+
+  // Mishary Alafasy 128kbps recitation via the everyayah CDN. Surah and ayah
+  // numbers are zero-padded to 3 digits (e.g. surah 2 ayah 5 -> 002005.mp3).
+  const buildAudioUrl = (ayah: string) => {
+    const surahPad = String(Number(numberSurah)).padStart(3, "0");
+    const ayahPad = String(Number(ayah)).padStart(3, "0");
+    return `https://everyayah.com/data/Alafasy_128kbps/${surahPad}${ayahPad}.mp3`;
+  };
+
+  // Lazily create the shared audio element and wire up ended/error handlers
+  // (client-only). Clean up listeners + pause on unmount.
+  useEffect(() => {
+    const audio = new Audio();
+    audioRef.current = audio;
+
+    const handleEnded = () => {
+      setPlayingAyah((current) => {
+        if (current === null) return null;
+        const keys = verseKeysRef.current;
+        const index = keys.indexOf(current);
+        const nextKey = index >= 0 ? keys[index + 1] : undefined;
+        if (nextKey) {
+          audio.src = buildAudioUrl(nextKey);
+          void audio.play().catch(() => {
+            // Autoplay/advance failure is handled by the error listener.
+          });
+          return nextKey;
+        }
+        return null;
+      });
+    };
+
+    const handleError = () => {
+      toast.error("Audio gagal dimuat", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        theme: theme === "dark" ? "dark" : "light",
+        transition: Bounce,
+      });
+      setPlayingAyah(null);
+    };
+
+    audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("error", handleError);
+
+    return () => {
+      audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("error", handleError);
+      audio.pause();
+      audio.src = "";
+      audioRef.current = null;
+    };
+    // numberSurah is needed inside buildAudioUrl; theme keeps toast colour fresh.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [numberSurah, theme]);
+
+  const togglePlay = (ayah: string) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (playingAyah === ayah) {
+      audio.pause();
+      setPlayingAyah(null);
+      return;
+    }
+
+    audio.src = buildAudioUrl(ayah);
+    setPlayingAyah(ayah);
+    void audio.play().catch(() => {
+      // play() rejection surfaces via the "error" listener; nothing extra here.
+    });
+  };
+
   return (
     <>
       <div className="drop-shadow-custom dark:drop-shadow-dark relative mb-6 flex">
@@ -129,12 +214,51 @@ export default function Verse({
         <div
           key={text}
           id={text}
-          className="drop-shadow-custom dark:drop-shadow-dark relative mb-5 flex flex-col rounded-lg bg-white px-3 py-4 dark:bg-[#3D3D3D]"
+          className={`drop-shadow-custom dark:drop-shadow-dark relative mb-5 flex flex-col rounded-lg bg-white px-3 py-4 dark:bg-[#3D3D3D] ${
+            playingAyah === text ? "ring-2 ring-[#29A19C]" : ""
+          }`}
         >
-          <div className="mb-2 flex">
+          <div className="mb-2 flex items-center">
             <div className="my-auto mr-5 flex h-7 w-7 shrink-0 justify-center rounded-full border border-[#29A19C] text-center text-xs text-[#29A19C]">
               <span className="my-auto">{text}</span>
             </div>
+            <button
+              type="button"
+              aria-label={
+                playingAyah === text ? "Jeda audio" : "Putar audio ayat"
+              }
+              aria-pressed={playingAyah === text}
+              className={`ml-auto flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition ${
+                playingAyah === text
+                  ? "text-[#29A19C] opacity-100 ring-2 ring-[#29A19C]"
+                  : "text-[#29A19C] opacity-40 hover:opacity-70"
+              }`}
+              onClick={() => togglePlay(text)}
+            >
+              {playingAyah === text ? (
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path d="M6 5h4v14H6zm8 0h4v14h-4z" />
+                </svg>
+              ) : (
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              )}
+            </button>
             <button
               type="button"
               aria-label={
@@ -143,7 +267,7 @@ export default function Verse({
                   : "Simpan ayat"
               }
               aria-pressed={bookmarkedVerses.has(text)}
-              className={`ml-auto flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition ${
+              className={`ml-2 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition ${
                 bookmarkedVerses.has(text)
                   ? "opacity-100 ring-2 ring-[#29A19C]"
                   : "opacity-40 hover:opacity-70"
