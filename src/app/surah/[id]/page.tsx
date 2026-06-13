@@ -4,6 +4,17 @@ import Verse from "@/components/Verse";
 import surahInfo from "@/data/surah-info.json";
 import { Metadata } from "next";
 import { SurahInfo } from "@/types/SurahInfo";
+import { notFound } from "next/navigation";
+
+const validIds = new Set(
+  surahInfo.surah_info.map((item: SurahInfo) => item.index.toString())
+);
+
+async function loadSurah(id: string) {
+  if (!validIds.has(id)) notFound();
+  const res = await import(`@/data/surah/${id}.json`);
+  return res[id];
+}
 
 export async function generateStaticParams() {
   return surahInfo.surah_info.map((item: SurahInfo) => ({
@@ -17,8 +28,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const res = await import(`@/data/surah/${id}.json`);
-  const surah = res[id];
+  const surah = await loadSurah(id);
   return {
     title: `${surah.name_latin} - Quranku`,
   };
@@ -28,8 +38,7 @@ export default async function SurahPage({ params }: {
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const res = await import(`@/data/surah/${id}.json`);
-  const surah = res[id];
+  const surah = await loadSurah(id);
   const isSpecial = parseInt(surah.number) !== 1 && parseInt(surah.number) !== 9;
 
   return (

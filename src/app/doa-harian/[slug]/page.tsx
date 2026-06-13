@@ -3,9 +3,12 @@ import { DoaInfoItem } from "@/types/DoaInfo";
 import doaInfo from "@/data/doa-info.json";
 import { makeTitle } from "@/lib/utils";
 import React from "react";
+import { notFound } from "next/navigation";
+
+const validSlugs = new Set(doaInfo.doa_info.map((item: { slug: string }) => item.slug));
 
 export async function generateStaticParams() {
-  return doaInfo.doa_info.map((item: any) => ({
+  return doaInfo.doa_info.map((item: { slug: string }) => ({
     slug: item.slug,
   }));
 }
@@ -25,6 +28,7 @@ export default async function DoaHarianPage({ params }: {
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params;
+  if (!validSlugs.has(slug)) notFound();
   const res = await import(`@/data/doa-harian/${slug}.json`);
   const doa: DoaInfoItem[] = res.data;
 
