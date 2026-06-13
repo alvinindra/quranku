@@ -4,6 +4,11 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.1] - 2026-06-13
+
+### Fixed
+- **Qibla compass** — only use reliable headings (iOS `webkitCompassHeading` or absolute device orientation), ignore misleading relative readings, and show a clear message when the device has no compass sensor instead of leaving a silent, inactive arrow. The static qibla bearing still works as a fallback.
+
 ## [3.1.0] - 2026-06-13
 
 ### Added
@@ -32,5 +37,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 - Migrated tooling to **Bun**, upgraded to **Next.js 16** / **React 19**, ESLint 9 flat config, and Node LTS (`>=24.15.0`).
 
+[3.1.1]: https://github.com/alvinindra/quranku/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/alvinindra/quranku/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/alvinindra/quranku/releases/tag/v3.0.0
