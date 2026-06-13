@@ -4,6 +4,7 @@ import Image from "next/image";
 import storageKey from "@/constant/storage-key";
 import { setItem } from "@/utils/storage";
 import type { LastRead } from "@/types/LastRead";
+import { useReadingPrefs } from "@/components/reading/ReadingPrefsProvider";
 import { useEffect, useMemo, useState } from "react";
 
 type verseProps = {
@@ -34,6 +35,7 @@ export default function Verse({
   translations,
   tafsir,
 }: verseProps) {
+  const { prefs } = useReadingPrefs();
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [openTafsir, setOpenTafsir] = useState<Set<string>>(new Set());
@@ -121,12 +123,20 @@ export default function Verse({
             </button>
           </div>
           <div className="my-auto">
-            <div className="font-display arab mb-3 text-2xl leading-[52px] font-bold text-[#0C1517] dark:text-white">
+            <div
+              className="font-display arab mb-3 font-bold text-[#0C1517] dark:text-white"
+              style={{
+                fontSize: `calc(1.5rem * ${prefs.arabicFontScale})`,
+                lineHeight: `calc(52px * ${prefs.arabicFontScale})`,
+              }}
+            >
               {verse[text]}
             </div>
-            <div className="text-xs leading-[18px] text-[#8A8A8E] dark:text-white">
-              {translations.id.text[text]}
-            </div>
+            {prefs.showTranslation && (
+              <div className="text-xs leading-[18px] text-[#8A8A8E] dark:text-white">
+                {translations.id.text[text]}
+              </div>
+            )}
             {tafsir?.id?.kemenag?.text?.[text] && (
               <div className="mt-3 border-t border-gray-200 pt-2 dark:border-gray-600">
                 <button
