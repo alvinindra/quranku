@@ -15,6 +15,7 @@ import type { ReadingPrefs } from "@/types/ReadingPrefs";
 const DEFAULT_PREFS: ReadingPrefs = {
   arabicFontScale: 1,
   showTranslation: true,
+  showSurahContext: false,
 };
 
 type ReadingPrefsContextValue = {

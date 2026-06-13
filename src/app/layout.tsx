@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import "@/styles/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import ReadingPrefsProvider from "@/components/reading/ReadingPrefsProvider"
 import { sharedMetadata } from "@/data/sharedMetadata"
 import { isepMisbah, poppins } from "./fonts/fonts"
 
@@ -26,7 +27,7 @@ export default function RootLayout({
           className={`${isepMisbah.variable} ${poppins.variable} font-sans min-h-screen antialiased bg-white dark:bg-[#333333] max-w-[500px] mx-auto transition-colors dark:bg-dark dark:text-white`}
         >
           <ThemeProvider defaultTheme="dark" attribute="class">
-            {children}
+            <ReadingPrefsProvider>{children}</ReadingPrefsProvider>
           </ThemeProvider>
         </body>
       </html>

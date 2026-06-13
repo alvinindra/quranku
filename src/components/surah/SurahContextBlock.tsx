@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useReadingPrefs } from "@/components/reading/ReadingPrefsProvider";
 
 type SurahContextBlockProps = {
   title: string;
@@ -13,7 +14,11 @@ export default function SurahContextBlock({
   html,
   defaultOpen = false,
 }: SurahContextBlockProps) {
+  const { prefs } = useReadingPrefs();
   const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  // Hidden by default; controlled globally via the settings panel toggle.
+  if (!prefs.showSurahContext) return null;
 
   return (
     <div className="drop-shadow-custom dark:drop-shadow-dark mb-6 rounded-lg bg-white px-3 py-4 dark:bg-[#3D3D3D]">

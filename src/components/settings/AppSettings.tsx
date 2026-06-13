@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { useReadingPrefs } from "@/components/reading/ReadingPrefsProvider";
 
 const MIN_SCALE = 0.8;
@@ -10,9 +11,18 @@ const STEP = 0.1;
 const clamp = (value: number) =>
   Math.min(MAX_SCALE, Math.max(MIN_SCALE, Math.round(value * 10) / 10));
 
-export default function ReadingSettings() {
+export default function AppSettings() {
   const { prefs, setPrefs } = useReadingPrefs();
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  // next-themes resolves on the client only; guard against hydration mismatch.
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = resolvedTheme === "dark";
 
   const decrease = () =>
     setPrefs({ arabicFontScale: clamp(prefs.arabicFontScale - STEP) });
@@ -20,20 +30,21 @@ export default function ReadingSettings() {
     setPrefs({ arabicFontScale: clamp(prefs.arabicFontScale + STEP) });
 
   return (
-    <div className="relative mb-4 flex justify-end">
+    <div className="relative">
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
-        aria-label="Pengaturan bacaan"
-        className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white text-[#29A19C] drop-shadow-custom dark:bg-[#3D3D3D] dark:drop-shadow-dark"
+        aria-label="Pengaturan"
+        className="flex h-6 w-6 cursor-pointer items-center justify-center text-[#0C1517] dark:text-white"
       >
         <svg
-          className="h-5 w-5"
+          className="h-6 w-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -51,7 +62,39 @@ export default function ReadingSettings() {
       </button>
 
       {isOpen && (
-        <div className="absolute top-11 right-0 z-50 w-64 rounded-lg bg-white p-4 drop-shadow-custom dark:bg-[#3D3D3D] dark:drop-shadow-dark">
+        <div className="drop-shadow-custom dark:drop-shadow-dark absolute top-9 right-0 z-50 w-64 rounded-lg bg-white p-4 dark:bg-[#3D3D3D]">
+          <div className="mb-4">
+            <div className="mb-2 text-sm font-semibold text-[#0C1517] dark:text-white">
+              Tema
+            </div>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setTheme("light")}
+                aria-pressed={mounted ? !isDark : undefined}
+                className={`flex-1 cursor-pointer rounded-lg border px-3 py-2 text-sm ${
+                  mounted && !isDark
+                    ? "border-[#29A19C] text-[#29A19C]"
+                    : "border-gray-300 text-[#8A8A8E] dark:border-gray-600 dark:text-white"
+                }`}
+              >
+                Terang
+              </button>
+              <button
+                type="button"
+                onClick={() => setTheme("dark")}
+                aria-pressed={mounted ? isDark : undefined}
+                className={`flex-1 cursor-pointer rounded-lg border px-3 py-2 text-sm ${
+                  mounted && isDark
+                    ? "border-[#29A19C] text-[#29A19C]"
+                    : "border-gray-300 text-[#8A8A8E] dark:border-gray-600 dark:text-white"
+                }`}
+              >
+                Gelap
+              </button>
+            </div>
+          </div>
+
           <div className="mb-4">
             <div className="mb-2 text-sm font-semibold text-[#0C1517] dark:text-white">
               Ukuran font Arab
@@ -81,7 +124,7 @@ export default function ReadingSettings() {
             </div>
           </div>
 
-          <label className="flex cursor-pointer items-center justify-between">
+          <label className="mb-3 flex cursor-pointer items-center justify-between">
             <span className="text-sm font-semibold text-[#0C1517] dark:text-white">
               Tampilkan terjemahan
             </span>
@@ -90,6 +133,20 @@ export default function ReadingSettings() {
               checked={prefs.showTranslation}
               onChange={(event) =>
                 setPrefs({ showTranslation: event.target.checked })
+              }
+              className="h-4 w-4 accent-[#29A19C]"
+            />
+          </label>
+
+          <label className="flex cursor-pointer items-center justify-between">
+            <span className="text-sm font-semibold text-[#0C1517] dark:text-white">
+              Tampilkan Tentang Surah
+            </span>
+            <input
+              type="checkbox"
+              checked={prefs.showSurahContext}
+              onChange={(event) =>
+                setPrefs({ showSurahContext: event.target.checked })
               }
               className="h-4 w-4 accent-[#29A19C]"
             />

@@ -2,8 +2,6 @@ import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Verse from "@/components/Verse";
 import SurahContextBlock from "@/components/surah/SurahContextBlock";
-import ReadingPrefsProvider from "@/components/reading/ReadingPrefsProvider";
-import ReadingSettings from "@/components/reading/ReadingSettings";
 import ResumeReading from "@/components/reading/ResumeReading";
 import surahInfo from "@/data/surah-info.json";
 import { Metadata } from "next";
@@ -86,25 +84,22 @@ export default async function SurahPage({ params }: {
             </div>
           </div>
         </div>
-        <ReadingPrefsProvider>
-          <div className="flex flex-col relative w-full">
-            {info?.opening && (
-              <SurahContextBlock title="Tentang Surah" html={info.opening} />
-            )}
-            <ReadingSettings />
-            <ResumeReading numberSurah={surah.number} />
-            <Verse
-              numberSurah={surah.number}
-              surah={surah.name_latin}
-              verse={surah.text}
-              translations={surah.translations}
-              tafsir={surah.tafsir}
-            />
-            {info?.closing && (
-              <SurahContextBlock title="Penutup" html={info.closing} />
-            )}
-          </div>
-        </ReadingPrefsProvider>
+        <div className="flex flex-col relative w-full">
+          {info?.opening && (
+            <SurahContextBlock title="Tentang Surah" html={info.opening} />
+          )}
+          <ResumeReading numberSurah={surah.number} />
+          <Verse
+            numberSurah={surah.number}
+            surah={surah.name_latin}
+            verse={surah.text}
+            translations={surah.translations}
+            tafsir={surah.tafsir}
+          />
+          {info?.closing && (
+            <SurahContextBlock title="Penutup" html={info.closing} />
+          )}
+        </div>
       </div>
     </>
   );
