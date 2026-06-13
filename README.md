@@ -7,6 +7,19 @@ The sources of Quranku is from:
 - Doa, Dzikir, Teks Arab: Haqq - Quran.
 - Data Quran: [Quran JSON](https://github.com/rioastamal/quran-json)
 
+## Features
+- **Al-Quran reader** — 114 surah with Arabic text and Indonesian translation, per-surah verse filter.
+- **Tafsir** — per-ayah Kemenag tafsir, toggleable.
+- **Surah context** — opening/closing notes per surah ("Tentang Surah").
+- **Reading settings** — right-slide settings sheet: theme (light/dark), Arabic font size, show/hide translation, tafsir, and surah context.
+- **Bookmarks** — save multiple ayat and manage them at `/bookmarks`.
+- **Resume reading** — jump back to your last-read ayah; last-read shortcut on the home screen.
+- **Juz navigation** — browse all 30 juz at `/juz`.
+- **Prayer times & Hijri date** — daily schedule at `/jadwal-sholat` (computed locally with `adhan`, geolocation with city fallback).
+- **Qibla compass** — direction to the Kaaba at `/qibla` (device orientation).
+- **Audio recitation** — per-ayah playback (Mishary Alafasy via everyayah CDN).
+- **Doa harian, Dzikir Pagi/Petang, Teks Arab** — supplications and dhikr collections.
+
 ## Getting Started
 This is a [Next.js - App Router](https://nextjs.org/) project modernly configured and powered by **Bun** as the package manager and runner, and running on Node LTS.
 
@@ -39,8 +52,21 @@ Start the production server:
 bun run start
 ```
 
-### Code Quality & Formatting
+### Code Quality & Testing
 Run ESLint flat checks:
 ```bash
 bun run lint
 ```
+
+Run the type check:
+```bash
+bun run typecheck
+```
+
+Run the unit tests (Vitest):
+```bash
+bun run test
+```
+
+## Changelog
+See [CHANGELOG.md](./CHANGELOG.md) for release notes.
