@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import storageKey from "@/constant/storage-key";
 import { setItem } from "@/utils/storage";
 import { getBookmarks, toggleBookmark } from "@/utils/bookmarks";
@@ -267,23 +266,22 @@ export default function Verse({
                   : "Simpan ayat"
               }
               aria-pressed={bookmarkedVerses.has(text)}
-              className={`ml-2 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition ${
-                bookmarkedVerses.has(text)
-                  ? "opacity-100 ring-2 ring-[#29A19C]"
-                  : "opacity-40 hover:opacity-70"
-              }`}
+              className="ml-2 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition hover:bg-[#29A19C]/10"
               onClick={() => handleBookmark(numberSurah, surah, text)}
             >
-              <Image
-                src="/images/icon/bookmark.svg"
-                width={24}
-                height={24}
-                alt=""
-                style={{
-                  maxWidth: "100%",
-                  height: "auto",
-                }}
-              />
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill={bookmarkedVerses.has(text) ? "#29A19C" : "none"}
+                stroke="#29A19C"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path d="M6 2h12a1 1 0 0 1 1 1v18l-7-4-7 4V3a1 1 0 0 1 1-1z" />
+              </svg>
             </button>
           </div>
           <div className="my-auto">

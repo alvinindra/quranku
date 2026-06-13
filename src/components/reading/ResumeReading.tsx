@@ -24,7 +24,7 @@ export default function ResumeReading({
     if (!verse) return;
     document
       .getElementById(verse)
-      ?.scrollIntoView({ behavior: "smooth", block: "center" });
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   if (!verse) return null;
