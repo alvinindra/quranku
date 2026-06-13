@@ -3,15 +3,16 @@ import type { SurahInfo } from '@/types/SurahInfo'
 
 interface typeItemObject {
   item: SurahInfo
+  isLastRead?: boolean
 }
 
-export default function Surah({ item }: typeItemObject) {
+export default function Surah({ item, isLastRead = false }: typeItemObject) {
   return (
     <>
       <Link href={'/surah/' + item.index} passHref>
         <div className="relative flex mb-5 px-3 py-4 bg-white dark:bg-[#3D3D3D] rounded-lg drop-shadow-custom dark:drop-shadow-dark cursor-pointer">
           <div
-            className="mr-5 my-auto rounded-full w-6 h-6 text-center border border-[#29A19C] 
+            className="mr-5 my-auto rounded-full w-6 h-6 text-center border border-[#29A19C]
       text-xs text-[#29A19C] flex justify-center"
           >
             <span className="my-auto">{item.index}</span>
@@ -22,6 +23,11 @@ export default function Surah({ item }: typeItemObject) {
               {item.translation}, {item.ayah_count} ayat
             </div>
           </div>
+          {isLastRead && (
+            <span className="my-auto ml-auto rounded-full bg-[#29A19C]/10 px-2 py-1 text-[10px] font-semibold whitespace-nowrap text-[#29A19C]">
+              Terakhir dibaca
+            </span>
+          )}
         </div>
       </Link>
     </>

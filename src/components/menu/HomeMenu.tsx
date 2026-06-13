@@ -3,6 +3,10 @@ import IconDoaHarian from '@/components/icons/icon-doa-harian.svg'
 import IconDzikirPagi from '@/components/icons/icon-dzikir-pagi.svg'
 import IconDzikirPetang from '@/components/icons/icon-dzikir-petang.svg'
 import IconTeksArab from '@/components/icons/icon-teks-arab.svg'
+import IconBookmark from '@/components/icons/icon-bookmark.svg'
+import IconJuz from '@/components/icons/icon-juz.svg'
+import IconJadwalSholat from '@/components/icons/icon-jadwal-sholat.svg'
+import IconKiblat from '@/components/icons/icon-kiblat.svg'
 import Image from 'next/image'
 
 const listMenu = [
@@ -29,12 +33,32 @@ const listMenu = [
     url: '/teks-arab',
     // url: '/comingsoon',
   },
+  {
+    name: 'Simpanan',
+    icon: IconBookmark,
+    url: '/bookmarks',
+  },
+  {
+    name: 'Juz',
+    icon: IconJuz,
+    url: '/juz',
+  },
+  {
+    name: 'Jadwal Sholat',
+    icon: IconJadwalSholat,
+    url: '/jadwal-sholat',
+  },
+  {
+    name: 'Kiblat',
+    icon: IconKiblat,
+    url: '/qibla',
+  },
 ]
 
 export default function HomeMenu() {
   return (
     <>
-      <div className="relative flex justify-around my-5 px-3 py-4 bg-white dark:bg-[#3D3D3D] rounded-lg drop-shadow-custom dark:drop-shadow-dark cursor-pointer">
+      <div className="relative grid grid-cols-4 gap-y-4 justify-items-center my-5 px-3 py-4 bg-white dark:bg-[#3D3D3D] rounded-lg drop-shadow-custom dark:drop-shadow-dark cursor-pointer">
         {listMenu.map((item) => (
           <MenuItem item={item} key={item.name} />
         ))}
@@ -46,7 +70,7 @@ export default function HomeMenu() {
 function MenuItem({ item }: any) {
   return (
     <Link href={item?.url} className="flex text-center flex-col">
-      <div className="mx-auto"><Image src={item?.icon} alt="" /> </div>
+      <div className="mx-auto"><Image src={item?.icon} width={24} height={24} alt="" /> </div>
       <div className="text-[11px] whitespace-normal max-w-[51px] leading-3 mt-1 text-[#29A19C]">
         {item?.name}
       </div>

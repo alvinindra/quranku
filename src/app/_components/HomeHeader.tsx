@@ -1,7 +1,6 @@
 "use client"
 
 import storageKey from "@/constant/storage-key"
-import { cn } from "@/lib/utils"
 import { getItem } from "@/utils/storage"
 import type { LastRead } from "@/types/LastRead"
 import Image from "next/image"
@@ -24,8 +23,11 @@ export default function HomeHeader() {
     }
   }
 
+  // Only show the "Terakhir Dibaca" card when there actually is a last read.
+  if (!hasCache) return null
+
   return <div
-    className={cn("relative w-full", hasCache && "cursor-pointer")}
+    className="relative w-full cursor-pointer"
     onClick={gotoLastRead}
   >
     <div className="absolute z-10 left-5 top-5">
@@ -39,25 +41,14 @@ export default function HomeHeader() {
         />
         <div className="text-sm ml-2 text-white">Terakhir Dibaca</div>
       </div>
-      {hasCache ? (
-        <>
-          <div className="font-bold text-base mb-[3px] text-white">
-            {typeof cacheLastRead?.surah === 'string'
-              ? cacheLastRead.surah
-              : (cacheLastRead?.surah as any)?.name_latin ?? ''}
-          </div>
-          <div className="text-xs text-white">
-            Ayat {cacheLastRead.verse}
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="font-bold text-base mb-[3px] text-white">
-            <div>Ayo baca </div>
-            <div>Al-Quran</div>
-          </div>
-        </>
-      )}
+      <div className="font-bold text-base mb-[3px] text-white">
+        {typeof cacheLastRead?.surah === 'string'
+          ? cacheLastRead.surah
+          : (cacheLastRead?.surah as any)?.name_latin ?? ''}
+      </div>
+      <div className="text-xs text-white">
+        Ayat {cacheLastRead.verse}
+      </div>
     </div>
     <Image
       className="rounded-lg w-full"

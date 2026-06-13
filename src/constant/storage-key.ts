@@ -2,4 +2,6 @@
 export default {
   VERSION: '1.0.0',
   LAST_READ: 'LAST_READ',
+  READING_PREFS: 'READING_PREFS',
+  BOOKMARKS: 'BOOKMARKS',
 }

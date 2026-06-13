@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from 'next/navigation'
-import ToggleDarkMode from '@/components/base/ToggleDarkMode'
+import AppSettings from '@/components/settings/AppSettings'
 import { cn } from '@/lib/utils'
 
 type HeaderProps = {
@@ -57,7 +57,7 @@ export default function Header({
           {title}
         </div>
       </div>
-      <ToggleDarkMode />
+      <AppSettings />
     </header>
   )
 }
