@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Verse from "@/components/Verse";
+import SurahContextBlock from "@/components/surah/SurahContextBlock";
 import surahInfo from "@/data/surah-info.json";
 import { Metadata } from "next";
 import { SurahInfo } from "@/types/SurahInfo";
@@ -40,6 +41,9 @@ export default async function SurahPage({ params }: {
   const { id } = await params
   const surah = await loadSurah(id);
   const isSpecial = parseInt(surah.number) !== 1 && parseInt(surah.number) !== 9;
+  const info = surahInfo.surah_info.find(
+    (s: SurahInfo) => s.index.toString() === id,
+  );
 
   return (
     <>
@@ -80,6 +84,9 @@ export default async function SurahPage({ params }: {
           </div>
         </div>
         <div className="flex flex-col relative w-full">
+          {info?.opening && (
+            <SurahContextBlock title="Tentang Surah" html={info.opening} />
+          )}
           <Verse
             numberSurah={surah.number}
             surah={surah.name_latin}
@@ -87,6 +94,9 @@ export default async function SurahPage({ params }: {
             translations={surah.translations}
             tafsir={surah.tafsir}
           />
+          {info?.closing && (
+            <SurahContextBlock title="Penutup" html={info.closing} />
+          )}
         </div>
       </div>
     </>
