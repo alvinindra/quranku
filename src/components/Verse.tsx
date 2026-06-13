@@ -214,7 +214,7 @@ export default function Verse({
         <div
           key={text}
           id={text}
-          className={`drop-shadow-custom dark:drop-shadow-dark relative mb-5 flex flex-col rounded-lg bg-white px-3 py-4 dark:bg-[#3D3D3D] ${
+          className={`drop-shadow-custom dark:drop-shadow-dark relative mb-5 flex flex-col scroll-mt-[80px] rounded-lg bg-white px-3 py-4 dark:bg-[#3D3D3D] ${
             playingAyah === text ? "ring-2 ring-[#29A19C]" : ""
           }`}
         >
