@@ -3,6 +3,7 @@ import IconDoaHarian from '@/components/icons/icon-doa-harian.svg'
 import IconDzikirPagi from '@/components/icons/icon-dzikir-pagi.svg'
 import IconDzikirPetang from '@/components/icons/icon-dzikir-petang.svg'
 import IconTeksArab from '@/components/icons/icon-teks-arab.svg'
+import IconMore from '@/components/icons/icon-more.svg'
 import Image from 'next/image'
 
 const listMenu = [
@@ -33,6 +34,11 @@ const listMenu = [
     name: 'Simpanan',
     icon: '/images/icon/bookmark.svg',
     url: '/bookmarks',
+  },
+  {
+    name: 'Cari Ayat',
+    icon: IconMore,
+    url: '/search',
   },
 ]
 
