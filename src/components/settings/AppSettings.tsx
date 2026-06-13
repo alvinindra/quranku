@@ -226,6 +226,13 @@ export default function AppSettings() {
                   </div>
                   <div className="border-t border-gray-100 dark:border-gray-700">
                     <ToggleSwitch
+                      label="Tampilkan tafsir"
+                      checked={prefs.showTafsir}
+                      onChange={(next) => setPrefs({ showTafsir: next })}
+                    />
+                  </div>
+                  <div className="border-t border-gray-100 dark:border-gray-700">
+                    <ToggleSwitch
                       label="Tampilkan tentang surah"
                       checked={prefs.showSurahContext}
                       onChange={(next) => setPrefs({ showSurahContext: next })}

@@ -301,7 +301,7 @@ export default function Verse({
                 {translations.id.text[text]}
               </div>
             )}
-            {tafsir?.id?.kemenag?.text?.[text] && (
+            {prefs.showTafsir && tafsir?.id?.kemenag?.text?.[text] && (
               <div className="mt-3 border-t border-gray-200 pt-2 dark:border-gray-600">
                 <button
                   type="button"
