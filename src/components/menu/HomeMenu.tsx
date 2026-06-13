@@ -36,11 +36,6 @@ const listMenu = [
     url: '/bookmarks',
   },
   {
-    name: 'Cari Ayat',
-    icon: IconMore,
-    url: '/search',
-  },
-  {
     name: 'Juz',
     // Reuse existing bookmark icon asset (no dedicated juz icon available)
     icon: '/images/icon/bookmark.svg',
