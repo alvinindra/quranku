@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write"
   },
   "dependencies": {
     "@serwist/next": "^9.5.11",
@@ -36,6 +37,7 @@
     "eslint-config-next": "^16.2.6",
     "jsdom": "^29.1.1",
     "postcss": "^8.4.49",
+    "prettier": "^3.8.4",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "serwist": "^9.5.11",
     "tailwindcss": "^4.3.0",
@@ -45,15 +47,16 @@
   },
   "browserslist": {
     "production": [
-      "> 1%",
-      "ie 11"
+      "> 0.5%",
+      "last 2 versions",
+      "not dead"
     ],
     "modern": [
       "last 1 chrome version",
       "last 1 firefox version"
     ],
     "ssr": [
-      "node 12"
+      "node 24"
     ]
   },
   "overrides": {
