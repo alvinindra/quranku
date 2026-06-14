@@ -28,6 +28,17 @@
   * {
     box-sizing: border-box;
   }
+
+  /* Smooth dark/light theme switching. Only color-related properties are
+     transitioned here; elements with their own `transition`/`transition-*`
+     utilities keep their behavior (class selectors override this base rule). */
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+  }
 }
 
 @theme {
