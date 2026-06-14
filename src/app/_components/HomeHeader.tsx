@@ -23,32 +23,41 @@ export default function HomeHeader() {
     }
   }
 
-  // Only show the "Terakhir Dibaca" card when there actually is a last read.
-  if (!hasCache) return null
-
   return <div
-    className="relative w-full cursor-pointer"
+    className={`relative w-full ${hasCache ? "cursor-pointer" : ""}`}
     onClick={gotoLastRead}
   >
     <div className="absolute z-10 left-5 top-5">
-      <div className="flex mb-6">
-        <Image
-          className="rounded-lg max-w-[20px]"
-          src="/images/icon/lastread.svg"
-          width={20}
-          height={20}
-          alt=""
-        />
-        <div className="text-sm ml-2 text-white">Terakhir Dibaca</div>
-      </div>
-      <div className="font-bold text-base mb-[3px] text-white">
-        {typeof cacheLastRead?.surah === 'string'
-          ? cacheLastRead.surah
-          : (cacheLastRead?.surah as any)?.name_latin ?? ''}
-      </div>
-      <div className="text-xs text-white">
-        Ayat {cacheLastRead.verse}
-      </div>
+      {/* Only the "Terakhir Dibaca" label appears when a last read exists. */}
+      {hasCache && (
+        <div className="flex mb-6">
+          <Image
+            className="rounded-lg max-w-[20px]"
+            src="/images/icon/lastread.svg"
+            width={20}
+            height={20}
+            alt=""
+          />
+          <div className="text-sm ml-2 text-white">Terakhir Dibaca</div>
+        </div>
+      )}
+      {hasCache ? (
+        <>
+          <div className="font-bold text-base mb-[3px] text-white">
+            {typeof cacheLastRead?.surah === 'string'
+              ? cacheLastRead.surah
+              : (cacheLastRead?.surah as any)?.name_latin ?? ''}
+          </div>
+          <div className="text-xs text-white">
+            Ayat {cacheLastRead.verse}
+          </div>
+        </>
+      ) : (
+        <div className="font-bold text-base mb-[3px] text-white">
+          <div>Ayo baca </div>
+          <div>Al-Quran</div>
+        </div>
+      )}
     </div>
     <Image
       className="rounded-lg w-full"
