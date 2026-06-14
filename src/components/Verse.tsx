@@ -227,10 +227,8 @@ export default function Verse({
                 playingAyah === text ? "Jeda audio" : "Putar audio ayat"
               }
               aria-pressed={playingAyah === text}
-              className={`ml-auto flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition ${
-                playingAyah === text
-                  ? "text-[#29A19C] opacity-100 ring-2 ring-[#29A19C]"
-                  : "text-[#29A19C] opacity-40 hover:opacity-70"
+              className={`ml-auto flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-[#29A19C] transition hover:bg-[#29A19C]/10 ${
+                playingAyah === text ? "ring-2 ring-[#29A19C]" : ""
               }`}
               onClick={() => togglePlay(text)}
             >

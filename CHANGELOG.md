@@ -4,6 +4,12 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.3] - 2026-06-14
+
+### Fixed
+- **Audio play icon** now uses full-strength accent color (matching the bookmark icon) instead of a dim low-contrast variant — visible in both light and dark mode.
+- **Dark/light theme switching** now transitions smoothly (eased color transition) instead of snapping.
+
 ## [3.1.2] - 2026-06-14
 
 ### Added
@@ -46,6 +52,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 - Migrated tooling to **Bun**, upgraded to **Next.js 16** / **React 19**, ESLint 9 flat config, and Node LTS (`>=24.15.0`).
 
+[3.1.3]: https://github.com/alvinindra/quranku/compare/v3.1.2...v3.1.3
 [3.1.2]: https://github.com/alvinindra/quranku/compare/v3.1.1...v3.1.2
 [3.1.1]: https://github.com/alvinindra/quranku/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/alvinindra/quranku/compare/v3.0.0...v3.1.0
