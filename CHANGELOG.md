@@ -4,6 +4,15 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.2] - 2026-06-14
+
+### Added
+- **Apple touch icon** (180×180) and an Android **maskable** icon; completed the PWA manifest icon set (absolute paths, `purpose` fields, `description`) and wired icons through metadata.
+
+### Fixed
+- Home **"Terakhir Dibaca"** label now appears only when a last read exists; the hero card stays visible with an "Ayo baca Al-Quran" fallback otherwise.
+- Corrected `icon-384x384.png`, which was actually 284×284.
+
 ## [3.1.1] - 2026-06-13
 
 ### Fixed
@@ -37,6 +46,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 - Migrated tooling to **Bun**, upgraded to **Next.js 16** / **React 19**, ESLint 9 flat config, and Node LTS (`>=24.15.0`).
 
+[3.1.2]: https://github.com/alvinindra/quranku/compare/v3.1.1...v3.1.2
 [3.1.1]: https://github.com/alvinindra/quranku/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/alvinindra/quranku/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/alvinindra/quranku/releases/tag/v3.0.0
