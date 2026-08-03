@@ -54,14 +54,14 @@
       "last 1 firefox version"
     ],
     "ssr": [
-      "node 24"
+      "node 26"
     ]
   },
   "overrides": {
     "@types/react": "^19.2.18"
   },
   "engines": {
-    "node": ">=24.15.0"
+    "node": ">=26.0.0"
   },
   "engineStrict": true
 }
