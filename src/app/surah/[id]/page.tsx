@@ -4,7 +4,6 @@ import Verse from "@/components/Verse";
 import SurahContextBlock from "@/components/surah/SurahContextBlock";
 import ResumeReading from "@/components/reading/ResumeReading";
 import surahInfo from "@/data/surah-info.json";
-import { Metadata } from "next";
 import { SurahInfo } from "@/types/SurahInfo";
 import { notFound } from "next/navigation";
 

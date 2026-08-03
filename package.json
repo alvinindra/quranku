@@ -7,7 +7,7 @@
     "dev-inspect": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
+    "lint": "oxlint",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
@@ -17,34 +17,31 @@
     "@svgr/webpack": "^8.1.0",
     "adhan": "^4.4.4",
     "clsx": "^2.1.1",
-    "next": "^16.2.6",
+    "next": "^16.3.0",
     "next-themes": "^0.4.6",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "react-toastify": "^11.0.5",
-    "tailwind-merge": "^2.2.1",
+    "tailwind-merge": "^3.6.0",
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.5",
-    "@eslint/js": "^10.0.1",
-    "@tailwindcss/postcss": "^4.3.0",
-    "@tailwindcss/typography": "^0.5.16",
-    "@types/minimatch": "5",
-    "@types/node": "^22.0.0",
-    "@types/react": "^19.2.6",
-    "@types/react-dom": "^19",
-    "@vitest/coverage-v8": "^4.1.8",
-    "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.6",
-    "jsdom": "^29.1.1",
-    "postcss": "^8.4.49",
-    "prettier": "^3.8.4",
-    "prettier-plugin-tailwindcss": "^0.6.11",
-    "tailwindcss": "^4.3.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/typography": "^0.5.20",
+    "@types/minimatch": "^6.0.0",
+    "@types/node": "^26.1.2",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.4",
+    "@vitest/coverage-v8": "^4.1.10",
+    "jsdom": "^30.0.1",
+    "oxlint": "^1.77.0",
+    "postcss": "^8.5.25",
+    "prettier": "^3.9.6",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "tailwindcss": "^4.3.3",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.8.2",
-    "vitest": "^4.1.8"
+    "typescript": "7.0.2",
+    "vitest": "^4.1.10"
   },
   "browserslist": {
     "production": [
@@ -57,14 +54,14 @@
       "last 1 firefox version"
     ],
     "ssr": [
-      "node 24"
+      "node 26"
     ]
   },
   "overrides": {
-    "@types/react": "^19.2.6"
+    "@types/react": "^19.2.18"
   },
   "engines": {
-    "node": ">=24.15.0"
+    "node": ">=26.0.0"
   },
   "engineStrict": true
 }

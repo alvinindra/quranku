@@ -1,10 +1,8 @@
 "use client"
 
-import { SurahInfo } from "@/types/SurahInfo"
 import { useCallback, useEffect, useState } from "react"
 
 export default function HomeScrollToTop() {
-  const [surahInfo, setSurahInfo] = useState<SurahInfo[]>([])
   const [showButton, setShowButton] = useState(false)
 
   const smoothScroll = useCallback(() => {
