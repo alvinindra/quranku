@@ -4,6 +4,13 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0] - 2026-08-04
+
+### Changed
+- **Toolchain upgrade**: TypeScript 7.0.2, Next.js 16.3.0, React 19.2.8, Tailwind 4.3.3, Vitest 4.1.10, and all other dependencies to latest.
+- **Linter**: replaced ESLint + eslint-config-next with **oxlint** (typescript-eslint does not support TypeScript 7 yet); fixed the lint findings it surfaced.
+- **Runtime**: now requires **Node.js ≥26** (Bun 1.3.14 recommended); Vitest disables Node 26's experimental `localStorage` global so jsdom's implementation is used in tests.
+
 ## [3.1.3] - 2026-06-14
 
 ### Fixed
