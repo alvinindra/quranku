@@ -6,6 +6,8 @@
   },
   "ignorePatterns": [".next/**", "out/**", "build/**", "next-env.d.ts"],
   "rules": {
-    "nextjs/no-html-link-for-pages": "off"
+    "nextjs/no-html-link-for-pages": "off",
+    "react/purity": "off",
+    "react/set-state-in-effect": "off"
   }
 }
