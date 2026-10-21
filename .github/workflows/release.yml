@@ -10,9 +10,7 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
-  issues: write
-  pull-requests: write
+  contents: read
 
 jobs:
   verify:
@@ -36,6 +34,10 @@ jobs:
     name: Release
     needs: verify
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v7
         with:
